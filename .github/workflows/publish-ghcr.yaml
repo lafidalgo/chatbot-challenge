@@ -1,0 +1,49 @@
+name: Build and Push Docker Image
+
+# Configures this workflow to run every time a change is pushed to the branch called `main`.
+on:
+  push:
+    branches:
+      - main
+
+# Defines two custom environment variables for the workflow.
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: fastapi-hotmart-challenge
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Log in to the Container registry
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_PAT }}
+
+      # Extract metadata (tags, labels) for Docker
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      # Build and push Docker image using docker-compose
+      - name: Build and push Docker image
+        run: |
+          docker-compose -f docker-compose.yml build
+          docker tag fastapi-hotmart-challenge:latest ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
