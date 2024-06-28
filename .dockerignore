@@ -1,0 +1,23 @@
+# Ignore virtual environment directories
+venv/
+.env/
+
+# Ignore cached files
+__pycache__
+
+# Ignore log files
+*.log
+
+# Ignore any temporary files or directories
+temp/
+.tmp/
+
+# Ignore IDE-specific files and directories
+.vscode/
+.idea/
+
+# Ignore Docker related files
+.dockerignore
+Dockerfile_API
+Dockerfile_Streamlit
+docker-compose.yml
