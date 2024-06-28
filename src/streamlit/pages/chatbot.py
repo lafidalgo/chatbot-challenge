@@ -7,7 +7,10 @@ import chatbot_funcs
 
 utils.init_page_configuration(add_logo=False)
 
-make_sidebar()
+authenticator, auth_config = utils.import_authentication_config()
+authenticator.login()
+
+make_sidebar(authenticator)
 
 INITIAL_ASSISTANT_TEXT = "Olá! Como posso te ajudar hoje?"
 

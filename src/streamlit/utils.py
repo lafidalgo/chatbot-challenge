@@ -5,6 +5,11 @@ from PIL import Image
 import requests
 from requests.models import Response
 
+import streamlit_authenticator as stauth
+
+import yaml
+from yaml.loader import SafeLoader
+
 
 def init_page_configuration(add_logo: bool = True):
     # Page configuration
@@ -18,6 +23,26 @@ def init_page_configuration(add_logo: bool = True):
     if add_logo:
         logo = Image.open("src/streamlit/assets/logo-hotmart.png")
         st.image(logo)
+
+
+def import_authentication_config():
+    with open('src/streamlit/authenticator/config.yaml') as file:
+        config = yaml.load(file, Loader=SafeLoader)
+
+    authenticator = stauth.Authenticate(
+        config['credentials'],
+        config['cookie']['name'],
+        config['cookie']['key'],
+        config['cookie']['expiry_days'],
+        config['pre-authorized']
+    )
+
+    return authenticator, config
+
+
+def update_authentication_config(auth_config):
+    with open('src/streamlit/authenticator/config.yaml', 'w') as file:
+        yaml.dump(auth_config, file, default_flow_style=False)
 
 
 def process_api_response(response: Response):
