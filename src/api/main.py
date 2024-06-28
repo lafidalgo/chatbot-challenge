@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, StreamingResponse
 
 from pydantic import BaseModel
 from typing import Optional
@@ -60,7 +60,7 @@ async def openai_completion(params: OpenAICompletionParams = Depends()):
     response = openai.get_openai_completions(
         params.user_prompt, params.system_prompt)
 
-    return {"results": response, "params": params, "error": ""}
+    return StreamingResponse(response, media_type='text/event-stream')
 
 
 @app.get("/test-name/")

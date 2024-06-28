@@ -16,7 +16,11 @@ def get_openai_completions(user_prompt: str, system_prompt: str = None):
 
     completion = client.chat.completions.create(
         model=model,
-        messages=messages
+        messages=messages,
+        stream=True,
     )
 
-    return completion.choices[0].message
+    for chunk in completion:
+        completion_text = chunk.choices[0].delta.content
+        if completion_text:  # Check if the text is not empty or None
+            yield completion_text
