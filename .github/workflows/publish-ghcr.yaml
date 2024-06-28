@@ -1,4 +1,4 @@
-name: Build, Push and Publish Docker Image
+name: Build, Push and Publish Docker Images
 
 # Configures this workflow to run every time a change is pushed to the branch called `main`.
 on:
@@ -6,13 +6,14 @@ on:
     branches:
       - main
 
-# Defines two custom environment variables for the workflow.
+# Defines custom environment variables for the workflow.
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: fastapi-hotmart-challenge
+  IMAGE_NAME_API: fastapi-hotmart-challenge
+  IMAGE_NAME_STREAMLIT: streamlit-hotmart-challenge
 
 jobs:
-  build-and-push-image:
+  build-and-push-images:
     runs-on: ubuntu-latest
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
@@ -30,23 +31,44 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GH_PAT }}
 
-      # Extract metadata (tags, labels) for Docker
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
+      # Extract metadata (tags, labels) for Docker - API
+      - name: Extract metadata (tags, labels) for Docker - API
+        id: meta_api
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_API }}
 
-      # Build and push Docker image
-      - name: Build and push Docker image
+      # Build and push Docker image - API
+      - name: Build and push Docker image - API
         uses: docker/build-push-action@v3
         with:
           context: .
           file: Dockerfile_API
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta_api.outputs.tags }}
+          labels: ${{ steps.meta_api.outputs.labels }}
+
+      # Extract metadata (tags, labels) for Docker - Streamlit
+      - name: Extract metadata (tags, labels) for Docker - Streamlit
+        id: meta_streamlit
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_STREAMLIT }}
+
+      # Build and push Docker image - Streamlit
+      - name: Build and push Docker image - Streamlit
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile_Streamlit
+          push: true
+          tags: ${{ steps.meta_streamlit.outputs.tags }}
+          labels: ${{ steps.meta_streamlit.outputs.labels }}
       
-      # Deploy Container to Render
-      - name: Deploy Container to Render
-        run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
+      # Deploy Containers for API
+      - name: Deploy Containers for API
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK_API }}
+      
+      # Deploy Containers for Streamlit
+      # - name: Deploy Containers for Streamlit
+      #   run: curl ${{ secrets.RENDER_DEPLOY_HOOK_STREAMLIT }}
