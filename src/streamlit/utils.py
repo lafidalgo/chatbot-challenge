@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 
 from PIL import Image
@@ -26,7 +28,9 @@ def init_page_configuration(add_logo: bool = True):
 
 
 def import_authentication_config():
-    with open('src/streamlit/authenticator/config.yaml') as file:
+    config_path = os.environ.get(
+        'STREAMLIT_AUTHENTICATOR_CONFIG_PATH', 'src/streamlit/authenticator/config.yaml')
+    with open(config_path) as file:
         config = yaml.load(file, Loader=SafeLoader)
 
     authenticator = stauth.Authenticate(
@@ -41,7 +45,9 @@ def import_authentication_config():
 
 
 def update_authentication_config(auth_config):
-    with open('src/streamlit/authenticator/config.yaml', 'w') as file:
+    config_path = os.environ.get(
+        'STREAMLIT_AUTHENTICATOR_CONFIG_PATH', 'src/streamlit/authenticator/config.yaml')
+    with open(config_path, 'w') as file:
         yaml.dump(auth_config, file, default_flow_style=False)
 
 
