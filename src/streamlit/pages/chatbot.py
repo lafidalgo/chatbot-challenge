@@ -3,28 +3,41 @@ import streamlit as st
 from navigation import make_sidebar
 
 import utils
-import config
+import chatbot_funcs
 
 utils.init_page_configuration(add_logo=False)
 
 make_sidebar()
 
-test_name = utils.send_get_api_request(config.API_URLS['GET_TEST_NAME'])
+INITIAL_ASSISTANT_TEXT = "Olá! Como posso te ajudar hoje?"
 
-# Markdown
-st.markdown(
-    f"""
-    ## Olá, {test_name}!
-    ## Bem-vindo ao Hotmart Insights!
+ASSISTANT_AVATAR = "src/streamlit/assets/favicon-hotmart.png"
+USER_AVATAR = "src/streamlit/assets/user-icon.png"
 
-    Esta aplicação web é uma poderosa ferramenta que utiliza técnicas avançadas de inteligência artificial para analisar e extrair informações estratégicas do site da Hotmart. 
+st.markdown("# ChatBot")
 
-    Com o poder da IA, você pode:
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = [{
+        "role": "assistant", "avatar": ASSISTANT_AVATAR, "content": INITIAL_ASSISTANT_TEXT}]
 
-    - **Análise instantânea**: Obtenha insights rápidos sobre métricas-chave da Hotmart.
-    - **Otimização de processos**: Simplifique e agilize a análise de dados, economizando tempo e recursos.
-    - **Decisões estratégicas**: Baseie suas decisões de negócios em informações precisas sobre tendências e performance da Hotmart.
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"], avatar=message["avatar"]):
+        st.markdown(message["content"])
 
-    Explore as funcionalidades no menu lateral e descubra como essa ferramenta pode transformar sua abordagem na análise de dados da Hotmart!
-    """
-)
+# Accept user input
+if prompt := st.chat_input("Envie sua pergunta aqui..."):
+    # Display user message in chat message container
+    with st.chat_message("user", avatar=USER_AVATAR):
+        st.markdown(prompt)
+    # Add user message to chat history
+    st.session_state.messages.append(
+        {"role": "user", "avatar": USER_AVATAR, "content": prompt})
+
+    # Display assistant response in chat message container
+    with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
+        response = st.write_stream(chatbot_funcs. response_generator())
+    # Add assistant response to chat history
+    st.session_state.messages.append(
+        {"role": "assistant", "avatar": ASSISTANT_AVATAR, "content": response})
