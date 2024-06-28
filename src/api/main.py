@@ -18,6 +18,11 @@ def help():
     """
 
 
+@app.get("/test-name/")
+def test_name():
+    return "Test"
+
+
 if __name__ == "__main__":
     import uvicorn
     # Start FastAPI

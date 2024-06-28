@@ -1,13 +1,16 @@
 import streamlit as st
 
 import utils
+import config
 
 utils.init_page_configuration()
+
+test_name = utils.send_get_api_request(config.API_URLS['GET_TEST_NAME'])
 
 # Markdown
 st.markdown(
     f"""
-    ## Olá!
+    ## Olá, {test_name}!
     ## Bem-vindo ao Hotmart Insights!
 
     Esta aplicação web é uma poderosa ferramenta que utiliza técnicas avançadas de inteligência artificial para analisar e extrair informações estratégicas do site da Hotmart. 
