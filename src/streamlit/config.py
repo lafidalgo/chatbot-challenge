@@ -16,6 +16,7 @@ else:
 
 endpoints = {
     'GET_TEST_NAME': 'test-name/',
+    'GET_OPENAI_COMPLETION': 'openai-completion/',
 }
 
 API_URLS = {}

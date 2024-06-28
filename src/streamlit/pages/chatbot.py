@@ -40,7 +40,11 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
 
     # Display assistant response in chat message container
     with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
-        response = st.write_stream(chatbot_funcs. response_generator())
+        if chatbot_funcs.check_openai_key():
+            response = st.write_stream(
+                utils.send_question_to_openai_api(prompt))
+        else:
+            response = st.write_stream(chatbot_funcs.response_generator())
     # Add assistant response to chat history
     st.session_state.messages.append(
         {"role": "assistant", "avatar": ASSISTANT_AVATAR, "content": response})
