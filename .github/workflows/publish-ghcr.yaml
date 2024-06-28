@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build, Push and Publish Docker Image
 
 # Configures this workflow to run every time a change is pushed to the branch called `main`.
 on:
@@ -46,3 +46,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      
+      # Deploy Container to Render
+      - name: Deploy Container to Render
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
