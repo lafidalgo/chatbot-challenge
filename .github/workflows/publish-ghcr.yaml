@@ -21,11 +21,11 @@ jobs:
       packages: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Log in to the Container registry
       - name: Log in to the Container registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -34,13 +34,13 @@ jobs:
       # Extract metadata (tags, labels) for Docker - API
       - name: Extract metadata (tags, labels) for Docker - API
         id: meta_api
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_API }}
 
       # Build and push Docker image - API
       - name: Build and push Docker image - API
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: Dockerfile_API
@@ -60,11 +60,11 @@ jobs:
       packages: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Log in to the Container registry
       - name: Log in to the Container registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -73,13 +73,13 @@ jobs:
       # Extract metadata (tags, labels) for Docker - Streamlit
       - name: Extract metadata (tags, labels) for Docker - Streamlit
         id: meta_streamlit
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_STREAMLIT }}
 
       # Build and push Docker image - Streamlit
       - name: Build and push Docker image - Streamlit
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: Dockerfile_Streamlit
