@@ -12,12 +12,12 @@ class CollectionInfosParams(BaseModel):
     collection_name: str
 
 
-@app.get("/")
+@app.get("/", tags=["API Status"])
 def home():
     return RedirectResponse(url="/help/")
 
 
-@app.get("/help/")
+@app.get("/help/", tags=["API Status"])
 def help():
     return """
     Hotmart Challenge
@@ -26,21 +26,21 @@ def help():
     """
 
 
-@app.get("/get-all-collections/")
+@app.get("/get-all-collections/", tags=["Qdrant Integration"])
 def all_collections():
     return {"results": {"collections": qdrant.get_all_collections()},
             "params": "",
             "error": ""}
 
 
-@app.get("/get-infos-collection/")
+@app.get("/get-infos-collection/", tags=["Qdrant Integration"])
 def infos_collection(params: CollectionInfosParams = Depends()):
     return {"results": qdrant.get_infos_collection(params.collection_name),
             "params": params,
             "error": ""}
 
 
-@app.get("/collection-exists/")
+@app.get("/collection-exists/", tags=["Qdrant Integration"])
 def collection_exists(params: CollectionInfosParams = Depends()):
     return {"results": qdrant.check_collection_exists(params.collection_name),
             "params": params,
