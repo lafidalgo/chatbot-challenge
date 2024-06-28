@@ -5,7 +5,7 @@ from navigation import make_sidebar
 import utils
 import config
 
-utils.init_page_configuration()
+utils.init_page_configuration(add_logo=False)
 
 make_sidebar()
 
