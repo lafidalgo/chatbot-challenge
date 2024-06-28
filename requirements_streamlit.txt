@@ -1,2 +1,5 @@
 # Install Streamlit
 streamlit==1.35.0
+
+# Install Streamlit Authenticator
+streamlit-authenticator==0.3.2
