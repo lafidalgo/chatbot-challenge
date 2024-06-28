@@ -2,14 +2,21 @@ from fastapi import FastAPI, Depends
 from fastapi.responses import RedirectResponse
 
 from pydantic import BaseModel
+from typing import Optional
 
 import src.api.integrations.qdrant as qdrant
+import src.api.integrations.openai as openai
 
 app = FastAPI()
 
 
 class CollectionInfosParams(BaseModel):
     collection_name: str
+
+
+class OpenAICompletionParams(BaseModel):
+    user_prompt: str
+    system_prompt: Optional[str] = None
 
 
 @app.get("/", tags=["API Status"])
@@ -45,6 +52,15 @@ def collection_exists(params: CollectionInfosParams = Depends()):
     return {"results": qdrant.check_collection_exists(params.collection_name),
             "params": params,
             "error": ""}
+
+
+@app.post("/openai-completion/", tags=["OpenAI Integration"])
+async def openai_completion(params: OpenAICompletionParams = Depends()):
+
+    response = openai.get_openai_completions(
+        params.user_prompt, params.system_prompt)
+
+    return {"results": response, "params": params, "error": ""}
 
 
 @app.get("/test-name/")
