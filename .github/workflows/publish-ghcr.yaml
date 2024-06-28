@@ -65,10 +65,10 @@ jobs:
           tags: ${{ steps.meta_streamlit.outputs.tags }}
           labels: ${{ steps.meta_streamlit.outputs.labels }}
       
-      # Deploy Containers for API
+      # Deploy Containers for API on Render
       - name: Deploy Containers for API
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK_API }}
       
-      # Deploy Containers for Streamlit
-      # - name: Deploy Containers for Streamlit
-      #   run: curl ${{ secrets.RENDER_DEPLOY_HOOK_STREAMLIT }}
+      # Deploy Containers for Streamlit on Render
+      - name: Deploy Containers for Streamlit
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK_STREAMLIT }}
