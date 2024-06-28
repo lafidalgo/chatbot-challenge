@@ -1,4 +1,5 @@
 import os
+import json
 
 import streamlit as st
 
@@ -61,7 +62,7 @@ def process_api_response(response, stream=False):
             for chunk in response.iter_content(chunk_size=8192):
                 if chunk:
                     # Decode the chunk if necessary (assuming the response is in JSON format)
-                    data = chunk.decode('utf-8')
+                    data = json.loads(chunk)
                     # Yield the decoded chunk
                     yield data
         else:
@@ -90,13 +91,15 @@ def send_post_api_request(url: str, params_data: dict = None, files: dict = None
 
 
 def send_question_to_openai_api(question: str):
-    system_prompt = "Você é um funcionário da Hotmart e está ajudando um cliente que está com dúvidas sobre a empresa."
+    system_prompt = "Você se chama João. Você é um funcionário da Hotmart que está ajudando um cliente com dúvidas sobre a empresa."
 
     params_data = {"user_prompt": question,
                    "system_prompt": system_prompt}
 
     response = send_post_api_request(
         config.API_URLS['GET_OPENAI_COMPLETION'], params_data=params_data, stream=True)
-    response_text = response
+
+    # Extract the response text from the response stream
+    response_text = (response_item['content'] for response_item in response)
 
     return response_text
