@@ -1,7 +1,12 @@
 import os
 import json
 
+import tiktoken
 from openai import OpenAI
+
+from llama_index.core import Settings
+from llama_index.llms.openai import OpenAI
+from llama_index.embeddings.openai import OpenAIEmbedding
 
 
 def get_streaming_openai_completions(client, model: str, messages: list):
@@ -51,3 +56,30 @@ def get_openai_completions(user_prompt: str, system_prompt: str = None, stream: 
 
 def check_openai_key():
     return bool(os.environ.get('OPENAI_API_KEY'))
+
+
+def configure_llamaindex_openai_embedding():
+    model = os.environ.get("OPENAI_EMBED_MODEL", "text-embedding-3-small")
+
+    if not model:
+        raise ValueError(
+            "Missing environment variables for OPENAI configuration.")
+
+    embed_model = OpenAIEmbedding(
+        model=model,
+    )
+    Settings.embed_model = embed_model
+
+
+def configure_llamaindex_openai_llm():
+    model = os.environ.get("OPENAI_LLM_MODEL", "gpt-3.5-turbo")
+
+    if not model:
+        raise ValueError(
+            "Missing environment variables for OPENAI configuration.")
+
+    llm_model = OpenAI(
+        model=model,
+    )
+    Settings.llm = llm_model
+    Settings.tokenizer = tiktoken.encoding_for_model(model).encode

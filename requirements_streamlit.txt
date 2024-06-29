@@ -3,3 +3,6 @@ streamlit==1.35.0
 
 # Install Streamlit Authenticator
 streamlit-authenticator==0.3.2
+
+# Install Streamlit Nested Layout
+streamlit-nested-layout==0.1.3

@@ -1,4 +1,9 @@
 import os
+from typing import List
+
+from llama_index.vector_stores.qdrant import QdrantVectorStore
+from llama_index.core import Settings, Document, StorageContext
+from llama_index.core.indices.vector_store.base import VectorStoreIndex
 
 import qdrant_client
 
@@ -34,3 +39,33 @@ def get_all_collections():
 def get_infos_collection(collection_name):
     client = create_vector_store_client()
     return client.get_collection(collection_name)
+
+
+def configure_documents_chunks(chunk_size: int = 512, chunk_overlap: int = 0):
+    Settings.chunk_size = chunk_size
+    Settings.chunk_overlap = chunk_overlap
+
+
+def build_vector_store_index(documents: List[Document], collection_name: str):
+    client = create_vector_store_client()
+
+    # Create a Qdrant vector store
+    vector_store = QdrantVectorStore(
+        client=client, collection_name=collection_name)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store)
+    index = VectorStoreIndex.from_documents(
+        documents,
+        storage_context=storage_context,
+    )
+
+    return index
+
+
+def get_vector_store_index(collection_name: str):
+    client = create_vector_store_client()
+
+    vector_store = QdrantVectorStore(
+        client=client, collection_name=collection_name)
+    index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
+
+    return index

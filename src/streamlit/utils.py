@@ -137,3 +137,25 @@ def check_api_status():
     api_status = send_get_api_request(config.API_URLS['GET_API_STATUS'])
 
     return api_status
+
+
+def send_question_to_html_querying_api(collection_name: str, question: str, similarity_top_k: int = 4):
+    params_data = {"collection_name": collection_name,
+                   "question": question,
+                   "similarity_top_k": similarity_top_k}
+
+    response = send_post_api_request(
+        config.API_URLS['HTML_QUERYING_ENDPOINT'], params_data=params_data)
+
+    query_references = []
+    for source_nodes in response["results"]["response"]["source_nodes"]:
+        node = source_nodes["node"]
+        query_references.append({
+            "text": node["text"],
+            "score": source_nodes["score"],
+        })
+
+    query_response = response["results"]["response"]["response"]
+    query_references = query_references
+
+    return query_response, query_references
