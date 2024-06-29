@@ -29,6 +29,7 @@ app = FastAPI()
 
 openai.configure_llamaindex_openai_embedding()
 openai.configure_llamaindex_openai_llm()
+qdrant.configure_documents_chunks(chunk_size=256, chunk_overlap=30)
 
 
 @app.get("/", tags=["API Status"])
