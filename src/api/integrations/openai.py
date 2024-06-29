@@ -7,7 +7,7 @@ from openai import OpenAI
 def get_openai_completions(user_prompt: str, system_prompt: str = None):
     client = OpenAI()
 
-    model = os.environ.get("OPENAI_LLM_MODEL")
+    model = os.environ.get("OPENAI_LLM_MODEL", "gpt-3.5-turbo")
 
     messages = []
 
