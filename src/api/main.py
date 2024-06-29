@@ -9,8 +9,6 @@ import src.api.integrations.openai as openai
 
 import src.api.utils as utils
 
-app = FastAPI()
-
 
 class CollectionInfosParams(BaseModel):
     collection_name: str
@@ -25,6 +23,12 @@ class OpenAICompletionParams(BaseModel):
 class HTMLExtractionParams(BaseModel):
     collection_name: str
     html_url: str
+
+
+app = FastAPI()
+
+openai.configure_llamaindex_openai_embedding()
+openai.configure_llamaindex_openai_llm()
 
 
 @app.get("/", tags=["API Status"])
