@@ -18,6 +18,7 @@ endpoints = {
     'GET_API_STATUS': 'api-status/',
     'GET_OPENAI_COMPLETION': 'openai-completion/',
     'CHECK_OPENAI_KEY': 'check-openai/',
+    'HTML_QUERYING_ENDPOINT': 'html-querying/',
 }
 
 API_URLS = {}
