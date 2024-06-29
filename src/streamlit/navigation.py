@@ -17,6 +17,10 @@ def get_current_page_name():
 
 
 def make_sidebar(authenticator):
+    # Initialize the check for the OpenAI API key
+    if "check_api_status" not in st.session_state:
+        st.session_state.check_api_status = utils.check_api_status()
+
     with st.sidebar:
         logo = Image.open("src/streamlit/assets/logo-hotmart.png")
         st.image(logo)
@@ -33,7 +37,11 @@ def make_sidebar(authenticator):
             st.write("")
             st.write("")
 
-            utils.check_api_status()
+            if st.session_state.check_api_status is True:
+                st.success(f"API status: OK", icon="✅")
+            else:
+                st.warning(
+                    f"API status: {st.session_state.check_api_status}", icon="🚨")
             st.write("")
             st.write("")
 
