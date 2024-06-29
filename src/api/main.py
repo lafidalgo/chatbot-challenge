@@ -25,6 +25,12 @@ class HTMLExtractionParams(BaseModel):
     html_url: str
 
 
+class HTMLQueryingParams(BaseModel):
+    collection_name: str
+    question: str
+    similarity_top_k: Optional[int] = 4
+
+
 app = FastAPI()
 
 openai.configure_llamaindex_openai_embedding()
@@ -123,6 +129,35 @@ async def html_extraction(params: HTMLExtractionParams = Depends()):
     # Return the results
     results["documents"] = documents
     results["documents_text"] = documents_text
+
+    return {"results": results, "params": params, "error": ""}
+
+
+@app.post("/html-querying/")
+async def html_querying(params: HTMLQueryingParams = Depends()):
+    results = {}
+
+    print("Params:", params.model_dump())
+
+    collection_name = params.collection_name
+
+    # Check if the collection doesn't exist
+    if not qdrant.check_collection_exists(collection_name):
+        return {"results": results, "params": params,
+                "error": "Collection doesn't exist yet."}
+
+    # Get the query engine from vector store
+    query_engine = utils.get_query_engine_from_vector_store(
+        collection_name, params.similarity_top_k)
+
+    question = params.question
+
+    print("Query question:", question)
+    response = query_engine.query(question)
+    print("Query response:", response)
+
+    # Return the results
+    results["response"] = response
 
     return {"results": results, "params": params, "error": ""}
 

@@ -59,3 +59,13 @@ def build_vector_store_index(documents: List[Document], collection_name: str):
     )
 
     return index
+
+
+def get_vector_store_index(collection_name: str):
+    client = create_vector_store_client()
+
+    vector_store = QdrantVectorStore(
+        client=client, collection_name=collection_name)
+    index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
+
+    return index
