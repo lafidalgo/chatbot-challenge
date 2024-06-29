@@ -100,7 +100,7 @@ async def openai_completion(params: OpenAICompletionParams = Depends()):
                 "error": ""}
 
 
-@app.post("/html-extraction/")
+@app.post("/html-extraction/", tags=["LlamaIndex Integration"])
 async def html_extraction(params: HTMLExtractionParams = Depends()):
     results = {}
 
@@ -133,7 +133,7 @@ async def html_extraction(params: HTMLExtractionParams = Depends()):
     return {"results": results, "params": params, "error": ""}
 
 
-@app.post("/html-querying/")
+@app.post("/html-querying/", tags=["LlamaIndex Integration"])
 async def html_querying(params: HTMLQueryingParams = Depends()):
     results = {}
 
