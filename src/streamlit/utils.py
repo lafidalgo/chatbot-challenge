@@ -107,7 +107,8 @@ def send_question_to_openai_api(question: str):
     system_prompt = "Você se chama João. Você é um funcionário da Hotmart que está ajudando um cliente com dúvidas sobre a empresa."
 
     params_data = {"user_prompt": question,
-                   "system_prompt": system_prompt}
+                   "system_prompt": system_prompt,
+                   "stream_response": True}
 
     response = send_post_api_request(
         config.API_URLS['GET_OPENAI_COMPLETION'], params_data=params_data, stream=True)

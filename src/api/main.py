@@ -17,6 +17,7 @@ class CollectionInfosParams(BaseModel):
 class OpenAICompletionParams(BaseModel):
     user_prompt: str
     system_prompt: Optional[str] = None
+    stream_response: Optional[bool] = False
 
 
 @app.get("/", tags=["API Status"])
@@ -68,11 +69,17 @@ def check_openai():
 
 @app.post("/openai-completion/", tags=["OpenAI Integration"])
 async def openai_completion(params: OpenAICompletionParams = Depends()):
+    stream_response = params.stream_response
 
     response = openai.get_openai_completions(
-        params.user_prompt, params.system_prompt)
+        params.user_prompt, params.system_prompt, stream=stream_response)
 
-    return StreamingResponse(response, media_type='text/event-stream')
+    if stream_response:
+        return StreamingResponse(response, media_type='text/event-stream')
+    else:
+        return {"results": response,
+                "params": params,
+                "error": ""}
 
 
 if __name__ == "__main__":
