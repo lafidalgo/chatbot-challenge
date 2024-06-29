@@ -1,10 +1,3 @@
-import os
-
-
-def check_openai_key():
-    return os.environ.get('OPENAI_API_KEY')
-
-
 def response_generator():
     import random
     import time

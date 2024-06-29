@@ -54,6 +54,13 @@ def collection_exists(params: CollectionInfosParams = Depends()):
             "error": ""}
 
 
+@app.get("/check-openai/", tags=["OpenAI Integration"])
+def check_openai():
+    return {"results": openai.check_openai_key(),
+            "params": "",
+            "error": ""}
+
+
 @app.post("/openai-completion/", tags=["OpenAI Integration"])
 async def openai_completion(params: OpenAICompletionParams = Depends()):
 

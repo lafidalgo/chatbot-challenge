@@ -32,3 +32,7 @@ def get_openai_completions(user_prompt: str, system_prompt: str = None):
                     "usage": chunk.usage
                 }
                 yield json.dumps(response)
+
+
+def check_openai_key():
+    return bool(os.environ.get('OPENAI_API_KEY'))

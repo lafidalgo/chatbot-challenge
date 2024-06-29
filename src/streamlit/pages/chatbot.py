@@ -40,7 +40,7 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
 
     # Display assistant response in chat message container
     with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
-        if chatbot_funcs.check_openai_key():
+        if utils.check_openai_key_api():
             response = st.write_stream(
                 utils.send_question_to_openai_api(prompt))
         else:

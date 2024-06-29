@@ -54,25 +54,38 @@ def update_authentication_config(auth_config):
         yaml.dump(auth_config, file, default_flow_style=False)
 
 
-def process_api_response(response, stream=False):
+def process_streaming_api_response(response: Response):
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
-        if stream:
-            # Process the response stream incrementally
-            for chunk in response.iter_content(chunk_size=8192):
-                if chunk:
-                    # Decode the chunk if necessary (assuming the response is in JSON format)
-                    data = json.loads(chunk)
-                    # Yield the decoded chunk
-                    yield data
-        else:
-            # Extract data from the response
-            data = response.json()
-            # Yield the data
-            yield data
+        # Process the response stream incrementally
+        for chunk in response.iter_content(chunk_size=8192):
+            if chunk:
+                # Decode the chunk if necessary (assuming the response is in JSON format)
+                data = json.loads(chunk)
+                # Yield the decoded chunk
+                yield data
     else:
         # Yield an error message if the request was not successful
         yield f"Error: {response.status_code}"
+
+
+def process_non_streaming_api_response(response: Response):
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Extract data from the response
+        data = response.json()
+        return data
+    else:
+        return f"Error: {response.status_code}"
+
+
+def process_api_response(response: Response, stream: bool = False):
+    if stream:
+        processed_response = process_streaming_api_response(response)
+    else:
+        processed_response = process_non_streaming_api_response(response)
+
+    return processed_response
 
 
 def send_get_api_request(url: str, params_data: dict = None, stream: bool = False):
@@ -101,5 +114,14 @@ def send_question_to_openai_api(question: str):
 
     # Extract the response text from the response stream
     response_text = (response_item['content'] for response_item in response)
+
+    return response_text
+
+
+def check_openai_key_api():
+    response = send_get_api_request(config.API_URLS['CHECK_OPENAI_KEY'])
+
+    # Extract the response text from the response stream
+    response_text = response["results"]
 
     return response_text
