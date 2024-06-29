@@ -24,6 +24,10 @@ if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant", "avatar": ASSISTANT_AVATAR, "content": INITIAL_ASSISTANT_TEXT}]
 
+# Initialize the check for the OpenAI API key
+if "check_openai_key" not in st.session_state:
+    st.session_state.check_openai_key = utils.check_openai_key_api()
+
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"], avatar=message["avatar"]):
@@ -40,7 +44,7 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
 
     # Display assistant response in chat message container
     with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
-        if utils.check_openai_key_api():
+        if st.session_state.check_openai_key:
             response = st.write_stream(
                 utils.send_question_to_openai_api(prompt))
         else:
