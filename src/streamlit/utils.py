@@ -103,18 +103,23 @@ def send_post_api_request(url: str, params_data: dict = None, files: dict = None
     return process_api_response(response, stream=stream)
 
 
-def send_question_to_openai_api(question: str):
+def send_question_to_openai_api(question: str, stream: bool = False):
     system_prompt = "Você se chama João. Você é um funcionário da Hotmart que está ajudando um cliente com dúvidas sobre a empresa."
 
     params_data = {"user_prompt": question,
                    "system_prompt": system_prompt,
-                   "stream_response": True}
+                   "stream_response": stream}
 
     response = send_post_api_request(
-        config.API_URLS['GET_OPENAI_COMPLETION'], params_data=params_data, stream=True)
+        config.API_URLS['GET_OPENAI_COMPLETION'], params_data=params_data, stream=stream)
 
-    # Extract the response text from the response stream
-    response_text = (response_item['content'] for response_item in response)
+    if stream:
+        # Extract the response text from the response stream
+        response_text = (response_item['content']
+                         for response_item in response)
+    else:
+        # Extract the response text from the response stream
+        response_text = response["results"]["message"]["content"]
 
     return response_text
 
