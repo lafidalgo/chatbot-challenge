@@ -125,3 +125,12 @@ def check_openai_key_api():
     response_text = response["results"]
 
     return response_text
+
+
+def check_api_status():
+    api_status = send_get_api_request(config.API_URLS['GET_API_STATUS'])
+
+    if api_status is True:
+        st.success(f"API status: OK", icon="✅")
+    else:
+        st.warning(f"API status: {api_status}", icon="🚨")

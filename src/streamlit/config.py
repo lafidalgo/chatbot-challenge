@@ -15,7 +15,7 @@ else:
     GENERAL_API_URL = os.environ.get('GENERAL_API_URL', local_general_api_url)
 
 endpoints = {
-    'GET_TEST_NAME': 'test-name/',
+    'GET_API_STATUS': 'api-status/',
     'GET_OPENAI_COMPLETION': 'openai-completion/',
     'CHECK_OPENAI_KEY': 'check-openai/',
 }

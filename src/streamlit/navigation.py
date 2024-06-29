@@ -3,6 +3,8 @@ import streamlit as st
 from streamlit.runtime.scriptrunner import get_script_run_ctx
 from streamlit.source_util import get_pages
 
+import utils
+
 
 def get_current_page_name():
     ctx = get_script_run_ctx()
@@ -28,6 +30,10 @@ def make_sidebar(authenticator):
                          label="ChatBot", icon="🤖")
             st.page_link("pages/profile_settings.py",
                          label="Ajustes de Conta", icon="🧑")
+            st.write("")
+            st.write("")
+
+            utils.check_api_status()
             st.write("")
             st.write("")
 

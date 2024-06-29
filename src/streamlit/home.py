@@ -3,7 +3,6 @@ import streamlit as st
 from navigation import make_sidebar
 
 import utils
-import config
 
 utils.init_page_configuration()
 
@@ -30,9 +29,6 @@ if st.session_state["authentication_status"]:
         Explore as funcionalidades no menu lateral e descubra como essa ferramenta pode transformar sua abordagem na análise de dados da Hotmart!
         """
     )
-
-    test_name = utils.send_get_api_request(config.API_URLS['GET_TEST_NAME'])
-    st.write("API integration test: ", test_name)
 
 elif st.session_state["authentication_status"] is False:
     st.error('Usuário e/ou senha incorretos')

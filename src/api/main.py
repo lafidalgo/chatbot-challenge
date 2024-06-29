@@ -33,6 +33,11 @@ def help():
     """
 
 
+@app.get("/api-status/", tags=["API Status"])
+def api_status():
+    return True
+
+
 @app.get("/get-all-collections/", tags=["Qdrant Integration"])
 def all_collections():
     return {"results": {"collections": qdrant.get_all_collections()},
@@ -68,11 +73,6 @@ async def openai_completion(params: OpenAICompletionParams = Depends()):
         params.user_prompt, params.system_prompt)
 
     return StreamingResponse(response, media_type='text/event-stream')
-
-
-@app.get("/test-name/")
-def test_name():
-    return "Test"
 
 
 if __name__ == "__main__":
