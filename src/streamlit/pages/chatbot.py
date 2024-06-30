@@ -28,11 +28,15 @@ if "messages" not in st.session_state:
 if "check_openai_key" not in st.session_state:
     st.session_state.check_openai_key = utils.check_openai_key_api()
 
+# Initialize llm models infos
+if "llms_infos" not in st.session_state:
+    st.session_state.llms_infos = utils.get_available_llms()
 
 st.markdown("# ChatBot")
 
 # Dropdown to select the language model
-selected_llm_model_name = chatbot_funcs.llm_model_selectbox()
+selected_llm_model_name = chatbot_funcs.llm_model_selectbox(
+    st.session_state.llms_infos)
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:

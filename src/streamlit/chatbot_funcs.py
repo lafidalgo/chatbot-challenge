@@ -32,8 +32,7 @@ def display_response_references(query_references):
                 st.text(reference['text'])
 
 
-def llm_model_selectbox():
-    llms_infos = utils.get_available_llms()
+def llm_model_selectbox(llms_infos):
     # Get the companies of the models
     models_companies = [model_info["company"]
                         for model_info in llms_infos.values()]
