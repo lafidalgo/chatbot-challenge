@@ -159,3 +159,11 @@ def send_question_to_html_querying_api(collection_name: str, question: str, simi
     query_references = query_references
 
     return query_response, query_references
+
+
+def get_available_llms():
+    response = send_get_api_request(config.API_URLS['GET_AVAILABLE_LLMS'])
+
+    llms_infos = response["results"]
+
+    return llms_infos

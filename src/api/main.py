@@ -102,6 +102,13 @@ async def openai_completion(params: OpenAICompletionParams = Depends()):
                 "error": ""}
 
 
+@app.get("/get-available-llms/", tags=["LlamaIndex Integration"])
+def available_llms():
+    return {"results": utils.get_available_llms(),
+            "params": "",
+            "error": ""}
+
+
 @app.post("/html-extraction/", tags=["LlamaIndex Integration"])
 async def html_extraction(params: HTMLExtractionParams = Depends()):
     results = {}
