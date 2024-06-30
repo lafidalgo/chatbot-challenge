@@ -6,6 +6,7 @@ from typing import Optional
 
 import src.api.integrations.qdrant as qdrant
 import src.api.integrations.openai as openai
+import src.api.integrations.replicate as replicate
 
 import src.api.utils as utils
 
@@ -34,7 +35,8 @@ class HTMLQueryingParams(BaseModel):
 app = FastAPI()
 
 openai.configure_llamaindex_openai_embedding()
-openai.configure_llamaindex_openai_llm()
+# openai.configure_llamaindex_openai_llm()
+replicate.configure_llamaindex_replicate_llm()
 qdrant.configure_documents_chunks(chunk_size=256, chunk_overlap=30)
 
 
