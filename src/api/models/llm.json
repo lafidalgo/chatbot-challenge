@@ -1,14 +1,52 @@
 {
     "GPT-3.5 Turbo": {
         "model_id": "gpt-3.5-turbo",
-        "provider": "openai"
+        "provider": "openai",
+        "company": "OpenAI"
     },
     "GPT-4o": {
         "model_id": "gpt-4o",
-        "provider": "openai"
+        "provider": "openai",
+        "company": "OpenAI"
     },
     "Llama 2 7B Chat": {
         "model_id": "meta/llama-2-7b-chat",
-        "provider": "replicate"
+        "provider": "replicate",
+        "company": "Meta"
+    },
+    "Llama 2 13B Chat": {
+        "model_id": "meta/llama-2-13b-chat",
+        "provider": "replicate",
+        "company": "Meta"
+    },
+    "Llama 2 70B Chat": {
+        "model_id": "meta/llama-2-70b-chat",
+        "provider": "replicate",
+        "company": "Meta"
+    },
+    "Llama 3 8B Instruct": {
+        "model_id": "meta/meta-llama-3-8b-instruct",
+        "provider": "replicate",
+        "company": "Meta"
+    },
+    "Llama 3 70B Instruct": {
+        "model_id": "meta/meta-llama-3-70b-instruct",
+        "provider": "replicate",
+        "company": "Meta"
+    },
+    "Mistral 7B v0.1": {
+        "model_id": "meta/mistral-7b-v0.1",
+        "provider": "replicate",
+        "company": "MistralAI"
+    },
+    "Mistral 7B Instruct v0.2": {
+        "model_id": "meta/mistral-7b-instruct-v0.2",
+        "provider": "replicate",
+        "company": "MistralAI"
+    },
+    "Mixtral 8x7B Instruct v0.1": {
+        "model_id": "meta/mixtral-8x7b-instruct-v0.1",
+        "provider": "replicate",
+        "company": "MistralAI"
     }
 }

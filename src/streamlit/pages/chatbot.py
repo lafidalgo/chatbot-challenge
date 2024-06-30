@@ -32,9 +32,7 @@ if "check_openai_key" not in st.session_state:
 st.markdown("# ChatBot")
 
 # Dropdown to select the language model
-dropdown_label = "Selecione o modelo de linguagem desejado:"
-llms_infos = utils.get_available_llms()
-selected_llm_model_name = st.selectbox(dropdown_label, llms_infos.keys())
+selected_llm_model_name = chatbot_funcs.llm_model_selectbox()
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
