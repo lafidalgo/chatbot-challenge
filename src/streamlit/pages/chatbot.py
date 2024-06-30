@@ -34,7 +34,7 @@ st.markdown("# ChatBot")
 # Dropdown to select the language model
 dropdown_label = "Selecione o modelo de linguagem desejado:"
 llms_infos = utils.get_available_llms()
-selected_llm = st.selectbox(dropdown_label, llms_infos.keys())
+selected_llm_model_name = st.selectbox(dropdown_label, llms_infos.keys())
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
@@ -54,7 +54,7 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
     with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
         if st.session_state.check_openai_key:
             response, references = utils.send_question_to_html_querying_api(
-                HTML_COLLECTION_NAME, prompt)
+                HTML_COLLECTION_NAME, prompt, selected_llm_model_name)
             # response = utils.send_question_to_openai_api(prompt)
             # response = st.write_stream(
             #    utils.send_question_to_openai_api(prompt, stream=True))

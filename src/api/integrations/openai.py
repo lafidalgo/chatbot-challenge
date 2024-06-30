@@ -71,8 +71,11 @@ def configure_llamaindex_openai_embedding():
     Settings.embed_model = embed_model
 
 
-def configure_llamaindex_openai_llm():
-    model = os.environ.get("OPENAI_LLM_MODEL", "gpt-3.5-turbo")
+def configure_llamaindex_openai_llm(llm_model_id: str = None):
+    if llm_model_id:
+        model = llm_model_id
+    else:
+        model = os.environ.get("OPENAI_LLM_MODEL", "gpt-3.5-turbo")
 
     if not model:
         raise ValueError(

@@ -8,8 +8,11 @@ def check_replicate_key():
     return bool(os.environ.get('REPLICATE_API_TOKEN'))
 
 
-def configure_llamaindex_replicate_llm():
-    model = os.environ.get("REPLICATE_LLM_MODEL", "meta/llama-2-7b-chat")
+def configure_llamaindex_replicate_llm(llm_model_id: str = None):
+    if llm_model_id:
+        model = llm_model_id
+    else:
+        model = os.environ.get("REPLICATE_LLM_MODEL", "meta/llama-2-7b-chat")
 
     if not model:
         raise ValueError(

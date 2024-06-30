@@ -139,9 +139,10 @@ def check_api_status():
     return api_status
 
 
-def send_question_to_html_querying_api(collection_name: str, question: str, similarity_top_k: int = 4):
+def send_question_to_html_querying_api(collection_name: str, question: str, llm_model_name: str, similarity_top_k: int = 4):
     params_data = {"collection_name": collection_name,
                    "question": question,
+                   "llm_model_name": llm_model_name,
                    "similarity_top_k": similarity_top_k}
 
     response = send_post_api_request(
