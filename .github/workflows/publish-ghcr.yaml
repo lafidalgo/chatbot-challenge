@@ -50,8 +50,8 @@ jobs:
           labels: ${{ steps.meta_api.outputs.labels }}
 
       # Deploy Containers for Document Extraction API on Render
-      # - name: Deploy Containers for Document Extraction API
-      #   run: curl ${{ secrets.RENDER_DEPLOY_HOOK_DOCUMENT_EXTRACTION_API }}
+      - name: Deploy Containers for Document Extraction API
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK_DOCUMENT_EXTRACTION_API }}
   
   build-and-push-document-querying-api-image:
     runs-on: ubuntu-latest
@@ -89,8 +89,8 @@ jobs:
           labels: ${{ steps.meta_api.outputs.labels }}
 
       # Deploy Containers for Document Querying API on Render
-      # - name: Deploy Containers for Document Querying API
-      #   run: curl ${{ secrets.RENDER_DEPLOY_HOOK_DOCUMENT_QUERYING_API }}
+      - name: Deploy Containers for Document Querying API
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK_DOCUMENT_QUERYING_API }}
 
   build-and-push-streamlit-image:
     runs-on: ubuntu-latest
