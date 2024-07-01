@@ -2,7 +2,7 @@ services:
   fastapi-hotmart-challenge:
     build:
       context: .
-      dockerfile: Dockerfile_API
+      dockerfile: src/api/Dockerfile
     ports:
       - "8000:8000"
     volumes:
@@ -14,7 +14,7 @@ services:
   streamlit-hotmart-challenge:
     build:
       context: .
-      dockerfile: Dockerfile_Streamlit
+      dockerfile: src/streamlit/Dockerfile
     ports:
       - "8501:8501"
     volumes:

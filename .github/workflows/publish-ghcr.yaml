@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: Dockerfile_API
+          file: src/api/Dockerfile
           push: true
           tags: ${{ steps.meta_api.outputs.tags }}
           labels: ${{ steps.meta_api.outputs.labels }}
@@ -82,7 +82,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: Dockerfile_Streamlit
+          file: src/streamlit/Dockerfile
           push: true
           tags: ${{ steps.meta_streamlit.outputs.tags }}
           labels: ${{ steps.meta_streamlit.outputs.labels }}
