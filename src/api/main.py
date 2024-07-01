@@ -6,6 +6,7 @@ from typing import Optional
 
 import src.api.integrations.qdrant as qdrant
 import src.api.integrations.openai as openai
+import src.api.integrations.replicate as replicate
 
 import src.api.utils as utils
 
@@ -28,13 +29,13 @@ class HTMLExtractionParams(BaseModel):
 class HTMLQueryingParams(BaseModel):
     collection_name: str
     question: str
+    llm_model_name: str
     similarity_top_k: Optional[int] = 4
 
 
 app = FastAPI()
 
 openai.configure_llamaindex_openai_embedding()
-openai.configure_llamaindex_openai_llm()
 qdrant.configure_documents_chunks(chunk_size=256, chunk_overlap=30)
 
 
@@ -100,6 +101,13 @@ async def openai_completion(params: OpenAICompletionParams = Depends()):
                 "error": ""}
 
 
+@app.get("/get-available-llms/", tags=["LlamaIndex Integration"])
+def available_llms():
+    return {"results": utils.get_available_llms(),
+            "params": "",
+            "error": ""}
+
+
 @app.post("/html-extraction/", tags=["LlamaIndex Integration"])
 async def html_extraction(params: HTMLExtractionParams = Depends()):
     results = {}
@@ -145,6 +153,22 @@ async def html_querying(params: HTMLQueryingParams = Depends()):
     if not qdrant.check_collection_exists(collection_name):
         return {"results": results, "params": params,
                 "error": "Collection doesn't exist yet."}
+
+    llm_model_name = params.llm_model_name
+
+    # Set llm model to be used
+    llm_models_infos = utils.get_available_llms()
+    if llm_model_name not in llm_models_infos.keys():
+        return {"results": results, "params": params,
+                "error": "Invalid 'llm_model_name' parameter."}
+
+    selected_llm_model = llm_models_infos[llm_model_name]
+
+    if selected_llm_model["provider"] == "openai":
+        openai.configure_llamaindex_openai_llm(selected_llm_model["model_id"])
+    elif selected_llm_model["provider"] == "replicate":
+        replicate.configure_llamaindex_replicate_llm(
+            selected_llm_model["model_id"])
 
     # Get the query engine from vector store
     query_engine = utils.get_query_engine_from_vector_store(

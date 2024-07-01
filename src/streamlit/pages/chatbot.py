@@ -19,8 +19,6 @@ USER_AVATAR = "src/streamlit/assets/user-icon.png"
 
 HTML_COLLECTION_NAME = "teste"
 
-st.markdown("# ChatBot")
-
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = [{
@@ -29,6 +27,16 @@ if "messages" not in st.session_state:
 # Initialize the check for the OpenAI API key
 if "check_openai_key" not in st.session_state:
     st.session_state.check_openai_key = utils.check_openai_key_api()
+
+# Initialize llm models infos
+if "llms_infos" not in st.session_state:
+    st.session_state.llms_infos = utils.get_available_llms()
+
+st.markdown("# ChatBot")
+
+# Dropdown to select the language model
+selected_llm_model_name = chatbot_funcs.llm_model_selectbox(
+    st.session_state.llms_infos)
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
@@ -48,7 +56,7 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
     with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
         if st.session_state.check_openai_key:
             response, references = utils.send_question_to_html_querying_api(
-                HTML_COLLECTION_NAME, prompt)
+                HTML_COLLECTION_NAME, prompt, selected_llm_model_name)
             # response = utils.send_question_to_openai_api(prompt)
             # response = st.write_stream(
             #    utils.send_question_to_openai_api(prompt, stream=True))

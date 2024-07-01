@@ -1,3 +1,4 @@
+import json
 from urllib.parse import urlparse
 
 import src.api.integrations.qdrant as qdrant
@@ -11,6 +12,11 @@ def is_valid_url(url: str) -> bool:
         return all([result.scheme, result.netloc])
     except ValueError:
         return False
+
+
+def get_available_llms():
+    with open('src/api/models/llm.json', 'r') as file:
+        return json.load(file)
 
 
 def build_vector_store_index_from_url(collection_name: str, html_url: str):
