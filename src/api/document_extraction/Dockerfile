@@ -8,10 +8,10 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r src/api/requirements.txt
+RUN pip install --no-cache-dir -r src/api/document_extraction/requirements.txt
 
 # Expose port 8000 for FastAPI
 EXPOSE 8000
 
 # Run uvicorn to start the FastAPI application
-CMD ["uvicorn", "src.api.app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.api.document_extraction.app:app", "--host", "0.0.0.0", "--port", "8000"]

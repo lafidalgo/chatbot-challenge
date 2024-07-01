@@ -1,6 +1,6 @@
-import src.api.integrations.qdrant as qdrant
-import src.api.prompts.hotmart_prompts as hotmart_prompts
-import src.api.text_extraction.html_extraction as html_extraction
+import src.api.shared.integrations.qdrant as qdrant
+import src.api.shared.prompts.hotmart_prompts as hotmart_prompts
+import src.api.shared.text_extraction.html_extraction as html_extraction
 
 
 def build_vector_store_index_from_url(collection_name: str, html_url: str):
