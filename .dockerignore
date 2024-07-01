@@ -18,6 +18,8 @@ temp/
 
 # Ignore Docker related files
 .dockerignore
-Dockerfile_API
-Dockerfile_Streamlit
 docker-compose.yml
+
+# Ignore Git directories
+.git
+.gitignore

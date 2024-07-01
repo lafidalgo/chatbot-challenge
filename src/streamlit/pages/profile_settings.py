@@ -1,14 +1,14 @@
 import streamlit as st
 
-from navigation import make_sidebar
+import page_formatting
 
 import utils
 
-utils.init_page_configuration(add_logo=False)
+page_formatting.init_page_configuration(add_logo=False)
 
 authenticator, auth_config = utils.import_authentication_config()
 
-make_sidebar(authenticator)
+page_formatting.make_sidebar(authenticator)
 
 st.markdown("# Ajustes de Conta")
 

@@ -1,20 +1,32 @@
 services:
-  fastapi-hotmart-challenge:
+  document-extraction-hotmart-challenge:
     build:
       context: .
-      dockerfile: Dockerfile_API
+      dockerfile: src/api/document_extraction/Dockerfile
     ports:
       - "8000:8000"
     volumes:
       - ./src:/app/src
     env_file:
       - .env
-    command: uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn src.api.document_extraction.app:app --host 0.0.0.0 --port 8000 --reload
+
+  document-querying-hotmart-challenge:
+    build:
+      context: .
+      dockerfile: src/api/document_querying/Dockerfile
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./src:/app/src
+    env_file:
+      - .env
+    command: uvicorn src.api.document_querying.app:app --host 0.0.0.0 --port 8000 --reload
 
   streamlit-hotmart-challenge:
     build:
       context: .
-      dockerfile: Dockerfile_Streamlit
+      dockerfile: src/streamlit/Dockerfile
     ports:
       - "8501:8501"
     volumes:

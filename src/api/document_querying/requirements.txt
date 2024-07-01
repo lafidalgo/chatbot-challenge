@@ -1,0 +1,19 @@
+# Install FastAPI and Uvicorn
+uvicorn==0.23.2
+fastapi==0.103.0
+
+# Install Qdrant
+qdrant-client==1.9.1
+
+# Install OpenAI and tiktoken
+openai==1.30.1
+tiktoken==0.7.0
+
+# Install LlamaIndex
+llama-index==0.10.51
+llama-index-readers-web==0.1.20
+llama-index-vector-stores-qdrant==0.2.8
+
+# Install Replicate
+replicate==0.27.0
+llama-index-llms-replicate==0.1.3

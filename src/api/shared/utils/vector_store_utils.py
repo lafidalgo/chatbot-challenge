@@ -1,22 +1,6 @@
-import json
-from urllib.parse import urlparse
-
-import src.api.integrations.qdrant as qdrant
-import src.api.prompts.hotmart_prompts as hotmart_prompts
-import src.api.text_extraction.html_extraction as html_extraction
-
-
-def is_valid_url(url: str) -> bool:
-    try:
-        result = urlparse(url)
-        return all([result.scheme, result.netloc])
-    except ValueError:
-        return False
-
-
-def get_available_llms():
-    with open('src/api/models/llm.json', 'r') as file:
-        return json.load(file)
+import src.api.shared.integrations.qdrant as qdrant
+import src.api.shared.prompts.hotmart_prompts as hotmart_prompts
+import src.api.shared.text_extraction.html_extraction as html_extraction
 
 
 def build_vector_store_index_from_url(collection_name: str, html_url: str):

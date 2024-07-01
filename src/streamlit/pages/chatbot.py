@@ -1,16 +1,15 @@
 import streamlit as st
 
-from navigation import make_sidebar
+import page_formatting
 
 import utils
-import chatbot_funcs
 
-utils.init_page_configuration(add_logo=False)
+page_formatting.init_page_configuration(add_logo=False)
 
 authenticator, auth_config = utils.import_authentication_config()
 authenticator.login()
 
-make_sidebar(authenticator)
+page_formatting.make_sidebar(authenticator)
 
 INITIAL_ASSISTANT_TEXT = "Olá! Como posso te ajudar hoje?"
 
@@ -35,7 +34,7 @@ if "llms_infos" not in st.session_state:
 st.markdown("# ChatBot")
 
 # Dropdown to select the language model
-selected_llm_model_name = chatbot_funcs.llm_model_selectbox(
+selected_llm_model_name = page_formatting.llm_model_selectbox(
     st.session_state.llms_infos)
 
 # Display chat messages from history on app rerun
@@ -57,16 +56,14 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
         if st.session_state.check_openai_key:
             response, references = utils.send_question_to_html_querying_api(
                 HTML_COLLECTION_NAME, prompt, selected_llm_model_name)
-            # response = utils.send_question_to_openai_api(prompt)
-            # response = st.write_stream(
-            #    utils.send_question_to_openai_api(prompt, stream=True))
-            st.write(response)
         else:
-            response = chatbot_funcs.response_generator()
-            st.write_stream(response)
+            response = "Sorry, API key not found."
+            references = []
 
+        # Display response
+        st.write(response)
         # Display references
-        chatbot_funcs.display_response_references(references)
+        page_formatting.display_response_references(references)
 
     # Add assistant response to chat history
     st.session_state.messages.append(

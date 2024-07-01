@@ -1,26 +1,11 @@
 import streamlit as st
 import streamlit_nested_layout
 
-import utils
-
-
-def response_generator():
-    import random
-    import time
-
-    response = random.choice(
-        [
-            "Olá! Como posso ajudar você hoje?",
-            "Oi, humano! Existe alguma coisa com a qual eu possa te ajudar?",
-            "Você precisa de ajuda?",
-        ]
-    )
-    for word in response.split():
-        yield word + " "
-        time.sleep(0.05)
-
 
 def display_response_references(query_references):
+    if not query_references:
+        return
+
     # Display references
     with st.expander("Ver referências"):
         # Sort query references by score
