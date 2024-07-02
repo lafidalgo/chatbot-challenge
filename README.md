@@ -126,3 +126,7 @@ docker-compose up --build
 ### Scripts de Exemplo
 * Utilize os exemplos de entrada fornecidos na pasta `examples/` para testar as APIs. Este são: `examples_pipeline.py` e `examples_pipeline.sh`.
 * Nele, há exemplos de entrada para cada microsserviço, incluindo comandos cURL e scripts de shell para testes e reprodutibilidade.
+
+## GitHub Actions
+* Este projeto gera automaticamente imagens Docker usando GitHub Actions. Essas imagens são construídas e publicadas no GitHub Packages sempre que um novo commit é feito na branch `main`.
+* Além disso, o workflow do GitHub Actions permite a publicação automática das imagens no serviço de hospedagem `Render` através de webhooks.
