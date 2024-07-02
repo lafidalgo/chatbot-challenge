@@ -17,6 +17,17 @@ def display_response_references(query_references):
                 st.text(reference['text'])
 
 
+def collection_selectbox(qdrant_collections):
+    # Dropdown to select desired qdrant collection
+    dropdown_label = "Selecione o documento de referência que deseja pesquisar:"
+
+    selected_collection = st.selectbox(
+        dropdown_label,
+        qdrant_collections)
+
+    return selected_collection
+
+
 def llm_model_selectbox(llms_infos):
     # Get the companies of the models
     models_companies = [model_info["company"]

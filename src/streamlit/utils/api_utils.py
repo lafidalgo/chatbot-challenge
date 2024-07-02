@@ -44,7 +44,7 @@ def send_get_api_request(url: str, params_data: dict = None, stream: bool = Fals
     return process_api_response(response, stream=stream)
 
 
-def send_post_api_request(url: str, params_data: dict = None, files: dict = None, stream: bool = False):
+def send_post_api_request(url: str, params_data: dict = None, files=None, stream: bool = False):
     # Make a request to the API
     response = requests.post(url, params=params_data,
                              files=files, stream=stream)

@@ -17,9 +17,11 @@ def get_current_page_name():
 
 
 def make_sidebar(authenticator):
-    # Initialize the check for the OpenAI API key
-    if "check_api_status" not in st.session_state:
-        st.session_state.check_api_status = utils.check_api_status()
+    # Initialize the check for the APIs status
+    if "check_document_querying_api_status" not in st.session_state:
+        st.session_state.check_document_querying_api_status = utils.check_document_querying_api_status()
+    if "check_document_extraction_api_status" not in st.session_state:
+        st.session_state.check_document_extraction_api_status = utils.check_document_extraction_api_status()
 
     with st.sidebar:
         logo = Image.open("src/streamlit/assets/logo-hotmart.png")
@@ -32,16 +34,25 @@ def make_sidebar(authenticator):
                          label="Home", icon="🏠")
             st.page_link("pages/chatbot.py",
                          label="ChatBot", icon="🤖")
+            st.page_link("pages/document_extraction.py",
+                         label="Extração de Documentos", icon="📄")
             st.page_link("pages/profile_settings.py",
                          label="Ajustes de Conta", icon="🧑")
             st.write("")
             st.write("")
 
-            if st.session_state.check_api_status is True:
-                st.success(f"API status: OK", icon="✅")
+            # Check the status of the Document Querying API
+            if st.session_state.check_document_querying_api_status is True:
+                st.success(f"Querying API status: OK", icon="✅")
             else:
                 st.warning(
-                    f"API status: {st.session_state.check_api_status}", icon="🚨")
+                    f"Querying API status: Error", icon="🚨")
+            # Check the status of the Document Extraction API
+            if st.session_state.check_document_extraction_api_status is True:
+                st.success(f"Extraction API status: OK", icon="✅")
+            else:
+                st.warning(
+                    f"Extraction API status: Error", icon="🚨")
             st.write("")
             st.write("")
 

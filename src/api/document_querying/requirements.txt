@@ -1,6 +1,7 @@
 # Install FastAPI and Uvicorn
 uvicorn==0.23.2
 fastapi==0.103.0
+python-multipart==0.0.9
 
 # Install Qdrant
 qdrant-client==1.9.1

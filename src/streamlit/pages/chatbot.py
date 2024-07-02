@@ -16,22 +16,24 @@ INITIAL_ASSISTANT_TEXT = "Olá! Como posso te ajudar hoje?"
 ASSISTANT_AVATAR = "src/streamlit/assets/favicon-hotmart.png"
 USER_AVATAR = "src/streamlit/assets/user-icon.png"
 
-HTML_COLLECTION_NAME = "teste"
-
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant", "avatar": ASSISTANT_AVATAR, "content": INITIAL_ASSISTANT_TEXT}]
 
-# Initialize the check for the OpenAI API key
-if "check_openai_key" not in st.session_state:
-    st.session_state.check_openai_key = utils.check_openai_key_api()
+# Initialize llm models infos
+if "qdrant_collections" not in st.session_state:
+    st.session_state.qdrant_collections = utils.get_all_qdrant_collections()
 
 # Initialize llm models infos
 if "llms_infos" not in st.session_state:
     st.session_state.llms_infos = utils.get_available_llms()
 
 st.markdown("# ChatBot")
+
+# Dropdown to select desired qdrant collection
+selected_collection = page_formatting.collection_selectbox(
+    st.session_state.qdrant_collections)
 
 # Dropdown to select the language model
 selected_llm_model_name = page_formatting.llm_model_selectbox(
@@ -53,11 +55,11 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
 
     # Display assistant response in chat message container
     with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
-        if st.session_state.check_openai_key:
+        if st.session_state.llms_infos:
             response, references = utils.send_question_to_html_querying_api(
-                HTML_COLLECTION_NAME, prompt, selected_llm_model_name)
+                selected_collection, prompt, selected_llm_model_name)
         else:
-            response = "Sorry, API key not found."
+            response = "Sorry, OpenAI or Replicate API keys not found."
             references = []
 
         # Display response
