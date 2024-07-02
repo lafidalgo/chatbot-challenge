@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 # Check Document Querying API Status
 echo "Checking Document Querying API Status"
 curl -X GET http://localhost:8001/api-status/
