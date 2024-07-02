@@ -10,10 +10,12 @@ O objetivo deste projeto é desenvolver dois microsserviços:
 1. **Microsserviço de Processamento e Armazenamento**:
     * Recebe um documento de texto extraído da página: [Como funciona a Hotmart?](https://hotmart.com/pt-br/blog/como-funciona-hotmart)
     * Realiza o processamento desse documento e o armazena em um Vector Database open-source.
+    * Desenvolvido como uma API para facilitar a integração e a escalabilidade.
 
 2. **Microsserviço de Busca e Resposta**:
     * Dado um texto de entrada no formato de pergunta, busca no Vector Database os trechos relevantes.
     * Utiliza um LLM para gerar uma resposta com base nos trechos recuperados.
+    * Desenvolvido como uma API para facilitar a integração e a escalabilidade.
 
 **EXTRA:** Além disso, de forma a desenvolver uma solução completa e um protótipo funcional, o objetivo extra do projeto é fornecer uma interface para interação do usuário com os microsserviços através de um ChatBot.
 
