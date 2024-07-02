@@ -129,4 +129,4 @@ docker-compose up --build
 
 ## GitHub Actions
 * Este projeto gera automaticamente imagens Docker usando GitHub Actions. Essas imagens são construídas e publicadas no GitHub Packages sempre que um novo commit é feito na branch `main`.
-* Além disso, o workflow do GitHub Actions permite a publicação automática das imagens no serviço de hospedagem `Render` através de webhooks.
+* Além disso, o workflow do GitHub Actions permite a publicação automática das imagens no serviço de hospedagem [Render](https://render.com/) através de webhooks.
