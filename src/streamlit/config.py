@@ -24,6 +24,7 @@ else:
 
 document_querying_endpoints = {
     'GET_API_STATUS': 'api-status/',
+    'GET_ALL_QDRANT_COLLECTIONS': 'qdrant/get-all-collections/',
     'GET_OPENAI_COMPLETION': 'openai/openai-completion/',
     'CHECK_OPENAI_KEY': 'openai/check-openai/',
     'HTML_QUERYING': 'llamaindex/html-querying/',
