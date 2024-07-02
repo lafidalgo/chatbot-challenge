@@ -112,6 +112,7 @@ docker-compose up --build
     * **OpenAI**: GPT-3.5 Turbo, GPT-4o
     * **Meta**: Llama 2 7B Chat, Llama 2 13B Chat, Llama 2 70B Chat, Llama 3 8B Instruct, Llama 3 70B Instruct
     * **MistralAI**: Mistral 7B v0.1, Mistral 7B Instruct v0.2, Mixtral 8x7B Instruct v0.1
+* **ATENÇÃO**: Os prompts foram desenvolvidos tendo como referência as LLMs da `OpenAI`. Sendo assim, recomenda-se a utilização dos modelos `GPT-3.5 Turbo` e `GPT-4o` para melhor performance. 
 
 ![](images/streamlit/chatbot.png)
 
