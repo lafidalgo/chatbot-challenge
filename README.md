@@ -1,4 +1,7 @@
 # Protótipo de LLM com base em Conhecimento - Hotmart
+
+![](images/logo-hotmart.png)
+
 Este projeto é parte do desafio proposto pela Hotmart, focado na criação de um protótipo de Large Language Model (LLM) com base em conhecimento.
 
 ## Descrição do Projeto
