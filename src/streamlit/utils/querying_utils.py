@@ -24,20 +24,26 @@ def check_openai_key_api():
 
 
 def get_all_qdrant_collections():
-    response = send_get_api_request(
-        config.DOCUMENT_QUERYING_API_URLS['GET_ALL_QDRANT_COLLECTIONS'])
+    try:
+        response = send_get_api_request(
+            config.DOCUMENT_QUERYING_API_URLS['GET_ALL_QDRANT_COLLECTIONS'])
 
-    collections = [collection["name"]
-                   for collection in response["results"]["collections"]]
+        collections = [collection["name"]
+                       for collection in response["results"]["collections"]]
+    except:
+        collections = []
 
     return collections
 
 
 def get_available_llms():
-    response = send_get_api_request(
-        config.DOCUMENT_QUERYING_API_URLS['GET_AVAILABLE_LLMS'])
+    try:
+        response = send_get_api_request(
+            config.DOCUMENT_QUERYING_API_URLS['GET_AVAILABLE_LLMS'])
 
-    llms_infos = response["results"]
+        llms_infos = response["results"]
+    except:
+        llms_infos = {}
 
     return llms_infos
 
