@@ -1,41 +1,27 @@
 # Projeto de Protótipo de LLM e Microsserviços para Hotmart
-Este projeto é parte do desafio proposto pela Hotmart, focado na criação de dois microsserviços utilizando um Vector Database e um Large Language Model (LLM) para processamento e busca de documentos de texto.
+Este projeto é parte do desafio proposto pela Hotmart, focado na criação de um protótipo de Large Language Model (LLM) com base em conhecimento.
 
 ## Descrição do Projeto
 O objetivo deste projeto é desenvolver dois microsserviços:
 
 1. **Microsserviço de Processamento e Armazenamento**:
-    * Recebe um documento de texto extraído de uma fonte específica.
+    * Recebe um documento de texto extraído da página: [Como funciona a Hotmart?](https://hotmart.com/pt-br/blog/como-funciona-hotmart)
     * Realiza o processamento desse documento e o armazena em um Vector Database open-source.
 
-2. **API de Busca e Resposta**:
+2. **Microsserviço de Busca e Resposta**:
     * Dado um texto de entrada no formato de pergunta, busca no Vector Database os trechos relevantes.
     * Utiliza um LLM para gerar uma resposta com base nos trechos recuperados.
+
+**EXTRA:** Além disso, de forma a desenvolver uma solução completa e um protótipo funcional, o objetivo extra do projeto é fornecer uma interface para interação do usuário com os microsserviços através de um ChatBot.
 
 ## Tecnologias Utilizadas
 * **FastAPI**: Framework para desenvolvimento de APIs em Python.
 * **Docker**: Para containerizar os microsserviços e o Vector Database.
-* **OpenAI API**: Utilizada para geração de respostas usando um Large Language Model (LLM).
-* **Vector Database**: Utilizar um Vector Database open-source para armazenar e recuperar informações relevantes.
-
-## Estrutura do Projeto
-```bash
-.
-├── api_search_response/
-│   ├── app.py            # Código do microsserviço de busca e resposta
-│   └── Dockerfile        # Dockerfile para construir o microsserviço
-├── document_processor/
-│   ├── app.py            # Código do microsserviço de processamento e armazenamento
-│   └── Dockerfile        # Dockerfile para construir o microsserviço
-├── vector_database/
-│   ├── ...               # Configuração e scripts do Vector Database
-├── docker-compose.yaml   # Arquivo Docker Compose para orquestrar os serviços
-├── README.md             # Documentação do projeto
-└── examples/             # Exemplos de entrada para testes (Postman, cURL, etc)
-    ├── example_postman_collection.json
-    └── ...
-```
-
+* **LlamaIndex**: Biblioteca de indexação vetorial open-source para armazenar e recuperar informações relevantes de documentos de texto.
+* **Qdrant - Vector Database**: Vector Database open-source para armazenar e recuperar informações relevantes.
+* **OpenAI API**: Utilizada para geração de respostas usando Large Language Models (LLM) proprietários da empresa OpenAI.
+* **Replicate API**: Utilizada para geração de respostas usando LLMs open-source.
+* **Streamlit**: Framework em Python para criação de aplicações web interativas, utilizado para desenvolver a interface de usuário que interage com os microsserviços e visualiza as respostas geradas pelos LLMs e dados indexados no Vector Database.
 
 ## Como Executar
 Para executar este projeto localmente via Docker Compose, siga os passos abaixo:
@@ -56,7 +42,6 @@ docker-compose up --build
 
 4. **Testando os microsserviços**:
 * Utilize os exemplos de entrada fornecidos na pasta `examples/` para testar as APIs.
-* Você pode importar a coleção de exemplos no Postman (examples/example_postman_collection.json) para facilitar os testes.
 
 ## Exemplos de Entrada
 Na pasta `examples/`, você encontrará exemplos de entrada para cada microsserviço, incluindo comandos cURL e scripts de shell para testes e reprodutibilidade.
