@@ -23,10 +23,6 @@ if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant", "avatar": ASSISTANT_AVATAR, "content": INITIAL_ASSISTANT_TEXT}]
 
-# Initialize the check for the OpenAI API key
-if "check_openai_key" not in st.session_state:
-    st.session_state.check_openai_key = utils.check_openai_key_api()
-
 # Initialize llm models infos
 if "llms_infos" not in st.session_state:
     st.session_state.llms_infos = utils.get_available_llms()
@@ -53,11 +49,11 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
 
     # Display assistant response in chat message container
     with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
-        if st.session_state.check_openai_key:
+        if st.session_state.llms_infos:
             response, references = utils.send_question_to_html_querying_api(
                 HTML_COLLECTION_NAME, prompt, selected_llm_model_name)
         else:
-            response = "Sorry, API key not found."
+            response = "Sorry, OpenAI or Replicate API keys not found."
             references = []
 
         # Display response
