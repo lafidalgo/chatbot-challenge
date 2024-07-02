@@ -40,8 +40,47 @@ Para executar este projeto localmente via Docker Compose, siga os passos abaixo:
 docker-compose up --build
 ```
 
-4. **Testando os microsserviços**:
-* Utilize os exemplos de entrada fornecidos na pasta `examples/` para testar as APIs.
+## Testando os microsserviços
+### FastAPI Swagger
+* O framework FastAPI automaticamente gera uma interface Swagger em seu endpoint `docs/`
 
-## Exemplos de Entrada
-Na pasta `examples/`, você encontrará exemplos de entrada para cada microsserviço, incluindo comandos cURL e scripts de shell para testes e reprodutibilidade.
+#### API de Extração de Documentos
+* Pode ser acessada através da URL: `http://localhost:8000/`
+
+![](images/swagger/document-extraction.png)
+
+#### API de Busca e Resposta
+* Pode ser acessada através da URL: `http://localhost:8001/`
+
+![](images/swagger/document-querying.png)
+
+### Interface Streamlit
+* A interface criada através da biblioteca Streamlit pode ser acessada através da URL: `http://localhost:8501/`
+
+#### Login
+
+![](images/streamlit/login.png)
+
+#### Home
+
+![](images/streamlit/home.png)
+
+#### ChatBot
+
+![](images/streamlit/chatbot.png)
+
+#### Extração de Documentos
+
+![](images/streamlit/document-extraction.png)
+
+#### Ajustes de Conta
+
+![](images/streamlit/profile-settings.png)
+
+### Dashboard Qdrant
+
+![](images/qdrant/collections.png)
+
+### Scripts de Exemplo
+* Utilize os exemplos de entrada fornecidos na pasta `examples/` para testar as APIs. Este são: `examples_pipeline.py` e `examples_pipeline.sh`.
+* Nele, há exemplos de entrada para cada microsserviço, incluindo comandos cURL e scripts de shell para testes e reprodutibilidade.
