@@ -28,11 +28,30 @@ Para executar este projeto localmente via Docker Compose, siga os passos abaixo:
 
 1. **Configuração inicial**:
 * Clone este repositório em sua máquina local.
+```sh
+git clone https://github.com/lafidalgo/hotmart-challenge.git
+cd hotmart-challenge
+```
 
 2. **Configuração do ambiente**:
 * Certifique-se de ter o Docker instalado em seu sistema.
 
-3. **Construir e iniciar os serviços**:
+3. **Definição das variáveis de ambiente**:
+* Crie um arquivo .env na raiz do projeto e defina as seguintes variáveis de ambiente:
+
+    **API de Extração de Documentos e API de Busca e Resposta**:
+    - `QDRANT_CLUSTER_URL`: URL do cluster do banco de dados Qdrant usado para armazenar e recuperar vetores de embeddings de documentos.
+    - `QDRANT_API_KEY`: API Key para autenticação com o serviço Qdrant.
+    - `OPENAI_API_KEY`: API Key para acessar os serviços da OpenAI, incluindo a geração de embeddings e outras funcionalidades.
+    - `OPENAI_EMBED_MODEL`: Nome do modelo de embeddings utilizado para transformar textos em vetores numéricos pela API da OpenAI.
+    - `REPLICATE_API_TOKEN`: Token de API para autenticação com o serviço Replicate, para utilização de LLMs open-source.
+
+    **Interface Streamlit**:
+    - `DOCUMENT_EXTRACTION_API_URL`: URL da API de Extração de Documentos.
+    - `DOCUMENT_QUERYING_API_URL`: URL da API de Busca e Resposta.
+    - `STREAMLIT_AUTHENTICATOR_CONFIG_PATH`: Caminho para o arquivo de configuração do autenticador do Streamlit, que gerencia a autenticação dos usuários na interface.
+
+4. **Construir e iniciar os serviços**:
 * Navegue até o diretório raiz do projeto onde está o arquivo `docker-compose.yaml`.
 * Execute o seguinte comando:
 
