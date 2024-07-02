@@ -4,8 +4,11 @@ from .api_utils import send_post_api_request, send_get_api_request
 
 
 def check_document_querying_api_status():
-    api_status = send_get_api_request(
-        config.DOCUMENT_QUERYING_API_URLS['GET_API_STATUS'])
+    try:
+        api_status = send_get_api_request(
+            config.DOCUMENT_QUERYING_API_URLS['GET_API_STATUS'])
+    except:
+        api_status = False
 
     return api_status
 

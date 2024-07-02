@@ -46,13 +46,13 @@ def make_sidebar(authenticator):
                 st.success(f"Querying API status: OK", icon="✅")
             else:
                 st.warning(
-                    f"Querying API status: {st.session_state.check_document_querying_api_status}", icon="🚨")
+                    f"Querying API status: Error", icon="🚨")
             # Check the status of the Document Extraction API
             if st.session_state.check_document_extraction_api_status is True:
                 st.success(f"Extraction API status: OK", icon="✅")
             else:
                 st.warning(
-                    f"Extraction API status: {st.session_state.check_document_extraction_api_status}", icon="🚨")
+                    f"Extraction API status: Error", icon="🚨")
             st.write("")
             st.write("")
 
