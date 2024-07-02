@@ -130,3 +130,8 @@ docker-compose up --build
 ## GitHub Actions
 * Este projeto gera automaticamente imagens Docker usando GitHub Actions. Essas imagens são construídas e publicadas no GitHub Packages sempre que um novo commit é feito na branch `main`.
 * Além disso, o workflow do GitHub Actions permite a publicação automática das imagens no serviço de hospedagem [Render](https://render.com/) através de webhooks.
+* Para utilizar o GitHub Actions, é necessário configurar os seguintes `Repository secrets`:
+    * `GH_PAT`: Token de acesso pessoal (Personal Access Token) do GitHub, necessário para autenticação e publicação de imagens Docker no GitHub Packages.
+    * `RENDER_DEPLOY_HOOK_DOCUMENT_EXTRACTION_API`: URL do webhook fornecido pelo Render para a atualização automática da API de Extração de Documentos.
+    * `RENDER_DEPLOY_HOOK_DOCUMENT_QUERYING_API`: URL do webhook fornecido pelo Render para a atualização automática da API de Consulta de Documentos.
+    * `RENDER_DEPLOY_HOOK_STREAMLIT`: URL do webhook fornecido pelo Render para a atualização automática do frontend Streamlit.
