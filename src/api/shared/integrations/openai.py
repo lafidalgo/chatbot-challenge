@@ -59,7 +59,7 @@ def check_openai_key():
 
 
 def configure_llamaindex_openai_embedding():
-    model = os.environ.get("OPENAI_EMBED_MODEL", "text-embedding-3-small")
+    model = os.environ.get("OPENAI_EMBED_MODEL", "text-embedding-3-large")
 
     if not model:
         raise ValueError(
