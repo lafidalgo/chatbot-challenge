@@ -58,26 +58,42 @@ docker-compose up --build
 * A interface criada através da biblioteca Streamlit pode ser acessada através da URL: `http://localhost:8501/`
 
 #### Login
+* Página de autenticação do usuário
+* Como padrão, a configuração do usuário teste encontra-se descrita no arquivo `src/streamlit/authenticator/config.yaml`
+* As credencias do usuário padrão são:
+    * Usuário: `teste`
+    * Senha: `teste`
 
 ![](images/streamlit/login.png)
 
 #### Home
+* Página inicial com uma breve descrição do projeto
 
 ![](images/streamlit/home.png)
 
 #### ChatBot
+* ChatBot integrado com a `API de Busca e Resposta`
+* Inicialmente, seleciona-se o documento de referência desejado dentre a lista de documentos cadastrados
+* Então, seleciona-se o LLM desejado dentre a lista de opções cadastradas. A partir da integração com os serviços da OpenAI e do Replicate, estão disponíveis os seguintes modelos:
+    * **OpenAI**: GPT-3.5 Turbo, GPT-4o
+    * **Meta**: Llama 2 7B Chat, Llama 2 13B Chat, Llama 2 70B Chat, Llama 3 8B Instruct, Llama 3 70B Instruct
+    * **MistralAI**: Mistral 7B v0.1, Mistral 7B Instruct v0.2, Mixtral 8x7B Instruct v0.1
 
 ![](images/streamlit/chatbot.png)
 
 #### Extração de Documentos
+* Interface para extração de documentos integrada com a `API de Extração de Documentos`
+* Nela, é possível a extração de documentos a partir de URL ou a partir do upload de arquivos
 
 ![](images/streamlit/document-extraction.png)
 
 #### Ajustes de Conta
+* Página para redefinição de senha e atualização de dados do usuário
 
 ![](images/streamlit/profile-settings.png)
 
 ### Dashboard Qdrant
+* Dashboard do Vector Database Qdrant para visualização das `collections` cadastradas
 
 ![](images/qdrant/collections.png)
 
