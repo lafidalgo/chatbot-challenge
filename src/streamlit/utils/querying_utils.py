@@ -4,13 +4,15 @@ from .api_utils import send_post_api_request, send_get_api_request
 
 
 def check_api_status():
-    api_status = send_get_api_request(config.API_URLS['GET_API_STATUS'])
+    api_status = send_get_api_request(
+        config.DOCUMENT_QUERYING_API_URLS['GET_API_STATUS'])
 
     return api_status
 
 
 def check_openai_key_api():
-    response = send_get_api_request(config.API_URLS['CHECK_OPENAI_KEY'])
+    response = send_get_api_request(
+        config.DOCUMENT_QUERYING_API_URLS['CHECK_OPENAI_KEY'])
 
     # Extract the response text from the response stream
     response_text = response["results"]
@@ -19,7 +21,8 @@ def check_openai_key_api():
 
 
 def get_available_llms():
-    response = send_get_api_request(config.API_URLS['GET_AVAILABLE_LLMS'])
+    response = send_get_api_request(
+        config.DOCUMENT_QUERYING_API_URLS['GET_AVAILABLE_LLMS'])
 
     llms_infos = response["results"]
 
@@ -34,7 +37,7 @@ def send_question_to_openai_api(question: str, stream: bool = False):
                    "stream_response": stream}
 
     response = send_post_api_request(
-        config.API_URLS['GET_OPENAI_COMPLETION'], params_data=params_data, stream=stream)
+        config.DOCUMENT_QUERYING_API_URLS['GET_OPENAI_COMPLETION'], params_data=params_data, stream=stream)
 
     if stream:
         # Extract the response text from the response stream
@@ -54,7 +57,7 @@ def send_question_to_html_querying_api(collection_name: str, question: str, llm_
                    "similarity_top_k": similarity_top_k}
 
     response = send_post_api_request(
-        config.API_URLS['HTML_QUERYING_ENDPOINT'], params_data=params_data)
+        config.DOCUMENT_QUERYING_API_URLS['HTML_QUERYING'], params_data=params_data)
 
     query_references = []
     for source_nodes in response["results"]["response"]["source_nodes"]:
