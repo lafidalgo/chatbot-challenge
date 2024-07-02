@@ -1,26 +1,11 @@
 import os
 from urllib.parse import urljoin
 
-# Get the USE_LOCAL_API environment variable and convert it to a boolean
-USE_LOCAL_APIS = os.environ.get(
-    'USE_LOCAL_APIS', '').lower() in ('true', '1', 't')
-
-# Get the LOCAL_DOCUMENT_QUERYING_API_URL environment variable
-local_document_querying_api_url = os.environ.get(
-    'LOCAL_DOCUMENT_QUERYING_API_URL', 'http://document-querying-hotmart-challenge:8000/')
-
-# Get the LOCAL_DOCUMENT_EXTRACTION_API_URL environment variable
-local_document_extraction_api_url = os.environ.get(
-    'LOCAL_DOCUMENT_EXTRACTION_API_URL', 'http://document-extraction-hotmart-challenge:8000/')
-
-if USE_LOCAL_APIS:
-    DOCUMENT_QUERYING_API_URL = local_document_querying_api_url
-    DOCUMENT_EXTRACTION_API_URL = local_document_extraction_api_url
-else:
-    DOCUMENT_QUERYING_API_URL = os.environ.get(
-        'DOCUMENT_QUERYING_API_URL', local_document_querying_api_url)
-    DOCUMENT_EXTRACTION_API_URL = os.environ.get(
-        'DOCUMENT_EXTRACTION_API_URL', local_document_extraction_api_url)
+# Get API URLs from environment variables
+DOCUMENT_QUERYING_API_URL = os.environ.get(
+    'DOCUMENT_QUERYING_API_URL', 'http://document-querying-hotmart-challenge:8000/')
+DOCUMENT_EXTRACTION_API_URL = os.environ.get(
+    'DOCUMENT_EXTRACTION_API_URL', 'http://document-extraction-hotmart-challenge:8000/')
 
 document_querying_endpoints = {
     'GET_API_STATUS': 'api-status/',
