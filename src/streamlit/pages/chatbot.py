@@ -55,12 +55,16 @@ if prompt := st.chat_input("Envie sua pergunta aqui..."):
 
     # Display assistant response in chat message container
     with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
-        if st.session_state.llms_infos:
+        references = []
+        if not st.session_state.llms_infos:
+            response = "Sorry, OpenAI or Replicate API keys not found."
+        elif not selected_collection:
+            response = "Sorry, no collection selected."
+        elif not selected_llm_model_name:
+            response = "Sorry, no language model selected."
+        else:
             response, references = utils.send_question_to_html_querying_api(
                 selected_collection, prompt, selected_llm_model_name)
-        else:
-            response = "Sorry, OpenAI or Replicate API keys not found."
-            references = []
 
         # Display response
         st.write(response)
