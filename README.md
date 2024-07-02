@@ -40,16 +40,18 @@ cd hotmart-challenge
 * Crie um arquivo .env na raiz do projeto e defina as seguintes variáveis de ambiente:
 
     **API de Extração de Documentos e API de Busca e Resposta**:
-    - `QDRANT_CLUSTER_URL`: URL do cluster do banco de dados Qdrant usado para armazenar e recuperar vetores de embeddings de documentos.
-    - `QDRANT_API_KEY`: API Key para autenticação com o serviço Qdrant.
-    - `OPENAI_API_KEY`: API Key para acessar os serviços da OpenAI, incluindo a geração de embeddings e outras funcionalidades.
-    - `OPENAI_EMBED_MODEL`: Nome do modelo de embeddings utilizado para transformar textos em vetores numéricos pela API da OpenAI.
+    - `OPENAI_API_KEY`: **(OBRIGATÓRIA)** API Key para acessar os serviços da OpenAI, incluindo a geração de embeddings e a utilização de seus LLMs. 
+    - `OPENAI_EMBED_MODEL`: Nome do modelo de embeddings utilizado para transformar textos em vetores numéricos pela API da OpenAI. Valor padrão: `text-embedding-3-large`
     - `REPLICATE_API_TOKEN`: Token de API para autenticação com o serviço Replicate, para utilização de LLMs open-source.
+    - `QDRANT_CLUSTER_URL`: URL do cluster do banco de dados Qdrant usado para armazenar e recuperar vetores de embeddings de documentos. Valor padrão: `http://qdrant-hotmart-challenge:6333`
+    - `QDRANT_API_KEY`: API Key para autenticação com o serviço Qdrant.
 
     **Interface Streamlit**:
-    - `DOCUMENT_EXTRACTION_API_URL`: URL da API de Extração de Documentos.
-    - `DOCUMENT_QUERYING_API_URL`: URL da API de Busca e Resposta.
-    - `STREAMLIT_AUTHENTICATOR_CONFIG_PATH`: Caminho para o arquivo de configuração do autenticador do Streamlit, que gerencia a autenticação dos usuários na interface.
+    - `DOCUMENT_EXTRACTION_API_URL`: URL da API de Extração de Documentos. Valor padrão: `http://document-extraction-hotmart-challenge:8000`
+    - `DOCUMENT_QUERYING_API_URL`: URL da API de Busca e Resposta. Valor padrão: `http://document-querying-hotmart-challenge:8000`
+    - `STREAMLIT_AUTHENTICATOR_CONFIG_PATH`: Caminho para o arquivo de configuração do autenticador do Streamlit, que gerencia a autenticação dos usuários na interface. Valor padrão: `src/streamlit/authenticator/config.yaml`
+
+* **ATENÇÃO**: A única variável de ambiente que deve ser **obrigatoriamente** definida é a `OPENAI_API_KEY`. As demais variáveis são opcionais.
 
 4. **Construir e iniciar os serviços**:
 * Navegue até o diretório raiz do projeto onde está o arquivo `docker-compose.yaml`.
