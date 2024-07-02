@@ -85,8 +85,8 @@ docker-compose up --build
 
 #### Login
 * Página de autenticação do usuário
-* Como padrão, a configuração do usuário teste encontra-se descrita no arquivo `src/streamlit/authenticator/config.yaml`
-* As credencias do usuário padrão são:
+* Como padrão, a configuração do `Usuário Teste` encontra-se descrita no arquivo `src/streamlit/authenticator/config.yaml`
+* As credencias do `Usuário Teste` são:
     * Usuário: `teste`
     * Senha: `teste`
 
@@ -99,7 +99,7 @@ docker-compose up --build
 
 #### ChatBot
 * ChatBot integrado com a `API de Busca e Resposta`
-* Inicialmente, seleciona-se o documento de referência desejado dentre a lista de documentos cadastrados
+* Inicialmente, seleciona-se o documento de referência desejado dentre a lista de documentos cadastrados no Vector Database
 * Então, seleciona-se o LLM desejado dentre a lista de opções cadastradas. A partir da integração com os serviços da OpenAI e do Replicate, estão disponíveis os seguintes modelos:
     * **OpenAI**: GPT-3.5 Turbo, GPT-4o
     * **Meta**: Llama 2 7B Chat, Llama 2 13B Chat, Llama 2 70B Chat, Llama 3 8B Instruct, Llama 3 70B Instruct
