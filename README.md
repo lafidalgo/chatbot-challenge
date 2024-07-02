@@ -129,6 +129,7 @@ docker-compose up --build
 
 ### Dashboard Qdrant
 * Dashboard do Vector Database Qdrant para visualização das `collections` cadastradas
+* Pode ser acessado através da URL: `http://localhost:6333/dashboard`
 
 ![](images/qdrant/collections.png)
 
