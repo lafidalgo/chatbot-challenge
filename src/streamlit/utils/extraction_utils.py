@@ -3,7 +3,14 @@ import mimetypes
 
 import config
 
-from .api_utils import send_post_api_request
+from .api_utils import send_post_api_request, send_get_api_request
+
+
+def check_document_extraction_api_status():
+    api_status = send_get_api_request(
+        config.DOCUMENT_EXTRACTION_API_URLS['GET_API_STATUS'])
+
+    return api_status
 
 
 def send_url_to_document_extraction_api(url: str, collection_name: str):
