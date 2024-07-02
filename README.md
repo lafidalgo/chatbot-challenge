@@ -111,7 +111,7 @@ docker-compose up --build
 * Então, seleciona-se o LLM desejado dentre a lista de opções cadastradas. A partir da integração com os serviços da OpenAI e do Replicate, estão disponíveis os seguintes modelos (configurados através do arquivo `src\api\shared\models\llm.json`):
     * **OpenAI**: GPT-3.5 Turbo, GPT-4o
     * **Meta**: Llama 2 7B Chat, Llama 2 13B Chat, Llama 2 70B Chat, Llama 3 8B Instruct, Llama 3 70B Instruct
-    * **MistralAI**: Mistral 7B v0.1, Mistral 7B Instruct v0.2, Mixtral 8x7B Instruct v0.1
+    * **MistralAI**: Mistral 7B Instruct v0.2, Mixtral 8x7B Instruct v0.1
 * **ATENÇÃO**: Os prompts foram desenvolvidos tendo como referência as LLMs da `OpenAI`. Sendo assim, recomenda-se a utilização dos modelos `GPT-3.5 Turbo` ou `GPT-4o` para melhor performance. 
 
 ![](images/streamlit/chatbot.png)
