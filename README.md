@@ -72,11 +72,19 @@ docker-compose up --build
 
 #### API de Extração de Documentos
 * Pode ser acessada através da URL: `http://localhost:8000/`
+* A API possui endpoints relacionados com:
+    * **API Status**: Verificação do status da API.
+    * **Qdrant Integration**: Funcionalidades de integração com o Vector Database Qdrant.
+    * **LlamaIndex Integration**: Funcionalidades para extração de documentos a partir de URL ou de upload de arquivo.
 
 ![](images/swagger/document-extraction.png)
 
 #### API de Busca e Resposta
 * Pode ser acessada através da URL: `http://localhost:8001/`
+* A API possui endpoints relacionados com:
+    * **API Status**: Verificação do status da API.
+    * **Qdrant Integration**: Funcionalidades de integração com o Vector Database Qdrant.
+    * **LlamaIndex Integration**: Funcionalidades para busca e resposta a partir de uma pergunta e um documento de referência.
 
 ![](images/swagger/document-querying.png)
 
