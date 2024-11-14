@@ -10,7 +10,7 @@ This project focuses on creating a prototype of a Knowledge-Based Large Language
 
 1. [Project Description](#project-description)
     * [Processing and Storage Microservice](#processing-and-storage-microservice)
-    * [Search and Response Microservice](#search-and-response-microservice)
+    * [Retrieve and Query Microservice](#retrieve-and-query-microservice)
 2. [Technologies Used](#technologies-used)
 3. [How to Run](#how-to-run)
     * [Initial Setup](#initial-setup)
@@ -40,7 +40,7 @@ The goal of this project is to develop two microservices:
     * Processes the document and stores it in an open-source Vector Database.
     * Designed as an API to facilitate integration and scalability.
 
-2. **Search and Response Microservice**:
+2. **Retrieve and Query Microservice**:
     * Given an input question in text format, searches the Vector Database for relevant chunks.
     * Uses an LLM to generate a response based on the retrieved chunks.
     * Designed as an API to facilitate integration and scalability.
