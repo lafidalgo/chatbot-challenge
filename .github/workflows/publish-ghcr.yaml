@@ -9,9 +9,9 @@ on:
 # Defines custom environment variables for the workflow.
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME_DOCUMENT_EXTRACTION_API: document-extraction-chatbot-challenge
-  IMAGE_NAME_DOCUMENT_QUERYING_API: document-querying-chatbot-challenge
-  IMAGE_NAME_STREAMLIT: streamlit-chatbot-challenge
+  IMAGE_NAME_DOCUMENT_EXTRACTION_API: document-extraction-context-chatbot
+  IMAGE_NAME_DOCUMENT_QUERYING_API: document-querying-context-chatbot
+  IMAGE_NAME_STREAMLIT: streamlit-context-chatbot
 
 jobs:
   build-and-push-document-extraction-api-image:

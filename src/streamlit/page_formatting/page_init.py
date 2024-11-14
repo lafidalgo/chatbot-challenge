@@ -6,7 +6,7 @@ def init_page_configuration(add_logo: bool = True):
     # Page configuration
     favicon = Image.open("src/streamlit/assets/favicon-chatbot.png")
     st.set_page_config(
-        page_title="Chatbot Challenge",
+        page_title="Context Chatbot",
         page_icon=favicon,
     )
 

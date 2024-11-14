@@ -3,9 +3,9 @@ from urllib.parse import urljoin
 
 # Get API URLs from environment variables
 DOCUMENT_QUERYING_API_URL = os.environ.get(
-    'DOCUMENT_QUERYING_API_URL', 'http://document-querying-chatbot-challenge:8000/')
+    'DOCUMENT_QUERYING_API_URL', 'http://document-querying-context-chatbot:8000/')
 DOCUMENT_EXTRACTION_API_URL = os.environ.get(
-    'DOCUMENT_EXTRACTION_API_URL', 'http://document-extraction-chatbot-challenge:8000/')
+    'DOCUMENT_EXTRACTION_API_URL', 'http://document-extraction-context-chatbot:8000/')
 
 document_querying_endpoints = {
     'GET_API_STATUS': 'api-status/',

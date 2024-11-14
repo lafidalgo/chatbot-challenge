@@ -4,7 +4,7 @@
     <img src="images/logo-chatbot.png" width="300" alt="Logo Chatbot">
 </div>
 
-Este projeto é parte de um desafio focado na criação de um protótipo de Large Language Model (LLM) com base em conhecimento.
+Este projeto é focado na criação de um protótipo de Large Language Model (LLM) com base em conhecimento.
 
 ## Descrição do Projeto
 O objetivo deste projeto é desenvolver dois microsserviços:
@@ -36,8 +36,8 @@ Para executar este projeto localmente via Docker Compose, siga os passos abaixo:
 1. **Configuração inicial**:
 * Clone este repositório em sua máquina local.
 ```sh
-git clone https://github.com/lafidalgo/chatbot-challenge.git
-cd chatbot-challenge
+git clone https://github.com/lafidalgo/context-chatbot.git
+cd context-chatbot
 ```
 
 2. **Configuração do ambiente**:
@@ -50,12 +50,12 @@ cd chatbot-challenge
     - `OPENAI_API_KEY`: **(OBRIGATÓRIA)** API Key para acessar os serviços da OpenAI, incluindo a geração de embeddings e a utilização de seus LLMs. 
     - `OPENAI_EMBED_MODEL`: Nome do modelo de embeddings utilizado para transformar textos em vetores numéricos pela API da OpenAI. Valor padrão: `text-embedding-3-large`
     - `REPLICATE_API_TOKEN`: Token de API para autenticação com o serviço Replicate, para utilização de LLMs open-source.
-    - `QDRANT_CLUSTER_URL`: URL do cluster do banco de dados Qdrant usado para armazenar e recuperar vetores de embeddings de documentos. Valor padrão: `http://qdrant-chatbot-challenge:6333`
+    - `QDRANT_CLUSTER_URL`: URL do cluster do banco de dados Qdrant usado para armazenar e recuperar vetores de embeddings de documentos. Valor padrão: `http://qdrant-context-chatbot:6333`
     - `QDRANT_API_KEY`: API Key para autenticação com o serviço Qdrant.
 
     **Interface Streamlit**:
-    - `DOCUMENT_EXTRACTION_API_URL`: URL da API de Extração de Documentos. Valor padrão: `http://document-extraction-chatbot-challenge:8000`
-    - `DOCUMENT_QUERYING_API_URL`: URL da API de Busca e Resposta. Valor padrão: `http://document-querying-chatbot-challenge:8000`
+    - `DOCUMENT_EXTRACTION_API_URL`: URL da API de Extração de Documentos. Valor padrão: `http://document-extraction-context-chatbot:8000`
+    - `DOCUMENT_QUERYING_API_URL`: URL da API de Busca e Resposta. Valor padrão: `http://document-querying-context-chatbot:8000`
     - `STREAMLIT_AUTHENTICATOR_CONFIG_PATH`: Caminho para o arquivo de configuração do autenticador do Streamlit, que gerencia a autenticação dos usuários na interface. Valor padrão: `src/streamlit/authenticator/config.yaml`
 
 * **ATENÇÃO**: A única variável de ambiente que deve ser **obrigatoriamente** definida é a `OPENAI_API_KEY`. As demais variáveis são opcionais.
