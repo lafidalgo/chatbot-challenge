@@ -1,6 +1,8 @@
 # Protótipo de LLM com base em Conhecimento - Context Chatbot
 
-<img src="images/logo-chatbot.png" width="300" alt="Logo Chatbot">
+<div align="center">
+    <img src="images/logo-chatbot.png" width="300" alt="Logo Chatbot">
+</div>
 
 Este projeto é parte de um desafio focado na criação de um protótipo de Large Language Model (LLM) com base em conhecimento.
 
