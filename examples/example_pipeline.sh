@@ -12,7 +12,7 @@ echo -e "\n\n" # New Line
 
 # Send URL for HTML Extraction
 echo "Sending URL for HTML Extraction"
-curl -X POST 'http://localhost:8000/llamaindex/html-extraction/?collection_name=como_funciona_hotmart&html_url=https://hotmart.com/pt-br/blog/como-funciona-hotmart'
+curl -X POST 'http://localhost:8000/llamaindex/html-extraction/?collection_name=llama_3_2&html_url=https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/'
 echo -e "\n\n" # New Line
 
 # Send File for Extraction
@@ -32,5 +32,5 @@ echo -e "\n\n" # New Line
 
 # Send Question for HTML Querying
 echo "Sending Question for HTML Querying"
-curl -X POST "http://localhost:8001/llamaindex/html-querying/?collection_name=como_funciona_hotmart&question=Onde%20fica%20a%20sede%20global%20da%20Hotmart&llm_model_name=GPT-3.5%20Turbo"
+curl -X POST "http://localhost:8001/llamaindex/html-querying/?collection_name=llama_3_2&question=What%20are%20the%20sizes%20of%20Llama%203.2%20models%3F&llm_model_name=GPT-4o%20Mini"
 

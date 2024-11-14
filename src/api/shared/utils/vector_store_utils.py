@@ -1,5 +1,5 @@
 import src.api.shared.integrations.qdrant as qdrant
-import src.api.shared.prompts.hotmart_prompts as hotmart_prompts
+import src.api.shared.prompts.custom_prompts as custom_prompts
 import src.api.shared.text_extraction.html_extraction as html_extraction
 import src.api.shared.text_extraction.file_extraction as file_extraction
 
@@ -38,6 +38,6 @@ def get_query_engine_from_vector_store(collection_name: str, similarity_top_k: i
 
     # Update the query engine with the custom prompt
     query_engine.update_prompts(
-        {"response_synthesizer:text_qa_template": hotmart_prompts.PT_CHAT_TEXT_QA_PROMPT})
+        {"response_synthesizer:text_qa_template": custom_prompts.PT_CHAT_TEXT_QA_PROMPT})
 
     return query_engine

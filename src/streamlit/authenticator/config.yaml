@@ -4,12 +4,12 @@ cookie:
   name: some_cookie_name
 credentials:
   usernames:
-    teste:
-      email: teste@teste.com
+    test:
+      email: test@test.com
       failed_login_attempts: 0
       logged_in: false
-      name: "Usuário Teste"
-      password: $2b$12$OrFlkJ9tI47XzfGHp4kZHOSUAq11CcIv48n6tKu22YRVPyf.hgmP.
+      name: Test User
+      password: $2b$12$043Bk4dtLlVqj0JjIeNtye1XYZteFENNij70fc7ZwRCUrdoQErCh6
 pre-authorized:
   emails:
-  - teste@teste.com
+  - test@test.com

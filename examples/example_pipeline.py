@@ -121,8 +121,8 @@ if __name__ == "__main__":
     print()
 
     # 3) Send a URL to the Document Extraction API
-    url = "https://hotmart.com/pt-br/blog/como-funciona-hotmart"
-    url_collection_name = "como_funciona_hotmart"
+    url = "https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/"
+    url_collection_name = "llama_3_2"
     print(f"3) Sending URL '{url}' to the Document Extraction API...")
     response_results = send_url_to_document_extraction_api(
         url, url_collection_name)
@@ -154,10 +154,10 @@ if __name__ == "__main__":
 
     # 7) Send a question to the Document Querying API
     print("7) Sending a question to the Document Querying API...")
-    question = "Onde fica a sede global da Hotmart?"
+    question = "What are the sizes of Llama 3.2 models?"
     print(f"Question: {question}")
-    collection_name = "como_funciona_hotmart"
-    llm_model_name = "GPT-3.5 Turbo"
+    collection_name = "llama_3_2"
+    llm_model_name = "GPT-4o Mini"
     query_response, query_references = send_question_to_html_querying_api(
         collection_name, question, llm_model_name)
     print("Query Response:", query_response)

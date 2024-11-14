@@ -11,9 +11,9 @@ authenticator.login()
 
 page_formatting.make_sidebar(authenticator)
 
-INITIAL_ASSISTANT_TEXT = "Olá! Como posso te ajudar hoje?"
+INITIAL_ASSISTANT_TEXT = "Hello! How may I help you?"
 
-ASSISTANT_AVATAR = "src/streamlit/assets/favicon-hotmart.png"
+ASSISTANT_AVATAR = "src/streamlit/assets/favicon-chatbot.png"
 USER_AVATAR = "src/streamlit/assets/user-icon.png"
 
 # Initialize chat history
@@ -45,7 +45,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # Accept user input
-if prompt := st.chat_input("Envie sua pergunta aqui..."):
+if prompt := st.chat_input("Send you question here..."):
     # Display user message in chat message container
     with st.chat_message("user", avatar=USER_AVATAR):
         st.markdown(prompt)

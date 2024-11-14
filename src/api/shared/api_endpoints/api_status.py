@@ -12,7 +12,7 @@ def home():
 @router.get("/help/")
 def help():
     return """
-    Hotmart Challenge
+    Context Chatbot
     
     /help - help endpoint
     """

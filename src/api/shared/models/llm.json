@@ -9,6 +9,11 @@
         "provider": "openai",
         "company": "OpenAI"
     },
+    "GPT-4o Mini": {
+        "model_id": "gpt-4o-mini",
+        "provider": "openai",
+        "company": "OpenAI"
+    },
     "Llama 2 7B Chat": {
         "model_id": "meta/llama-2-7b-chat",
         "provider": "replicate",

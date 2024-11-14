@@ -1,5 +1,5 @@
 services:
-  document-extraction-hotmart-challenge:
+  document-extraction-context-chatbot:
     build:
       context: .
       dockerfile: src/api/document_extraction/Dockerfile
@@ -11,7 +11,7 @@ services:
       - .env
     command: uvicorn src.api.document_extraction.app:app --host 0.0.0.0 --port 8000 --reload
 
-  document-querying-hotmart-challenge:
+  document-querying-context-chatbot:
     build:
       context: .
       dockerfile: src/api/document_querying/Dockerfile
@@ -23,7 +23,7 @@ services:
       - .env
     command: uvicorn src.api.document_querying.app:app --host 0.0.0.0 --port 8000 --reload
 
-  streamlit-hotmart-challenge:
+  streamlit-context-chatbot:
     build:
       context: .
       dockerfile: src/streamlit/Dockerfile
@@ -34,7 +34,7 @@ services:
     env_file:
       - .env
 
-  qdrant-hotmart-challenge:
+  qdrant-context-chatbot:
     image: qdrant/qdrant
     ports:
       - "6333:6333"

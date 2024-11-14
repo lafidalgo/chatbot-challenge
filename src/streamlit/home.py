@@ -15,22 +15,22 @@ if st.session_state["authentication_status"]:
     # Markdown
     st.markdown(
         f"""
-        ## Olá, {st.session_state["name"]}!
-        ## Bem-vindo ao Hotmart Insights!
+        ## Hello, {st.session_state["name"]}!
+        ## Welcome to Context Chatbot!
 
-        Esta aplicação web é uma poderosa ferramenta que utiliza técnicas avançadas de inteligência artificial para analisar e extrair informações estratégicas do site da Hotmart. 
+        This web application is a powerful tool that uses advanced artificial intelligence techniques to analyze and extract information from documents.
 
-        Com o poder da IA, você pode:
+        With the power of AI, you can:
 
-        - **Análise instantânea**: Obtenha insights rápidos sobre métricas-chave da Hotmart.
-        - **Otimização de processos**: Simplifique e agilize a análise de dados, economizando tempo e recursos.
-        - **Decisões estratégicas**: Baseie suas decisões de negócios em informações precisas sobre tendências e performance da Hotmart.
+        - **Instant Analysis**: Gain quick insights into your documents.
+        - **Process Optimization**: Simplify and streamline data analysis, saving time and resources.
+        - **Strategic Decisions**: Base your business decisions on accurate information about trends and performance.
 
-        Explore as funcionalidades no menu lateral e descubra como essa ferramenta pode transformar sua abordagem na análise de dados da Hotmart!
+        Explore the features in the sidebar menu and discover how this tool can transform your approach to document analysis!
         """
     )
 
 elif st.session_state["authentication_status"] is False:
-    st.error('Usuário e/ou senha incorretos')
+    st.error('Incorrect username and/or password')
 elif st.session_state["authentication_status"] is None:
-    st.warning('Por favor, faça login para acessar o sistema.')
+    st.warning('Please log in to access the system.')
