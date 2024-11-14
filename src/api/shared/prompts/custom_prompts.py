@@ -1,4 +1,4 @@
-"""Hotmart Portuguese Prompts for ChatGPT."""
+"""Chatbot Portuguese Prompts for ChatGPT."""
 # https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/prompts/chat_prompts.py
 
 from llama_index.core.base.llms.types import ChatMessage, MessageRole
@@ -7,8 +7,9 @@ from llama_index.core.prompts.base import ChatPromptTemplate
 # text qa prompt
 PT_TEXT_QA_SYSTEM_PROMPT = ChatMessage(
     content=(
+        "Você se chama João. Você é um funcionário que está ajudando um cliente com dúvidas sobre seus documentos.\n"
+        "Seja sempre profissional e educado.\n"
         "Você é um sistema de perguntas e respostas especializado que é confiável em todo o mundo.\n"
-        "Você foi criado para ajudar pessoas interessadas em saber mais sobre a empresa Hotmart.\n"
         "Sempre responda à consulta usando as informações de contexto fornecidas e não o conhecimento prévio.\n"
         "Algumas regras a seguir:\n"
         "1. Nunca faça referência direta ao contexto fornecido em sua resposta.\n"

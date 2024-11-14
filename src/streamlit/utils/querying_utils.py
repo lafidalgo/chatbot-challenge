@@ -49,7 +49,7 @@ def get_available_llms():
 
 
 def send_question_to_openai_api(question: str, stream: bool = False):
-    system_prompt = "Você se chama João. Você é um funcionário da Hotmart que está ajudando um cliente com dúvidas sobre a empresa."
+    system_prompt = "Você se chama João. Você é um funcionário que está ajudando um cliente com dúvidas sobre seus documentos."
 
     params_data = {"user_prompt": question,
                    "system_prompt": system_prompt,

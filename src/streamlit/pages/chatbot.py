@@ -13,7 +13,7 @@ page_formatting.make_sidebar(authenticator)
 
 INITIAL_ASSISTANT_TEXT = "Olá! Como posso te ajudar hoje?"
 
-ASSISTANT_AVATAR = "src/streamlit/assets/favicon-hotmart.png"
+ASSISTANT_AVATAR = "src/streamlit/assets/favicon-chatbot.png"
 USER_AVATAR = "src/streamlit/assets/user-icon.png"
 
 # Initialize chat history

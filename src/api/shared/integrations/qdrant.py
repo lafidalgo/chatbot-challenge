@@ -11,7 +11,7 @@ import qdrant_client
 def create_vector_store_client():
     # Create a Qdrant client
     url = os.environ.get("QDRANT_CLUSTER_URL",
-                         "http://qdrant-hotmart-challenge:6333")
+                         "http://qdrant-chatbot-challenge:6333")
     api_key = os.environ.get("QDRANT_API_KEY", None)
 
     if not url:

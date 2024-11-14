@@ -14,10 +14,10 @@ st.markdown(
     """
         # Extração de Documentos
 
-        Nesta seção, você pode cadastrar um novo documento de referência da Hotmart.
+        Nesta seção, você pode cadastrar um novo documento de referência.
 
         Para isso, você tem duas opções, escolha apenas uma delas:
-        - **Cadastro por URL**: Insira a URL do documento desejado. Ex: https://hotmart.com/pt-br/blog/como-funciona-hotmart
+        - **Cadastro por URL**: Insira a URL do documento desejado. Ex: https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/
         - **Cadastro por arquivo**: Faça o upload do arquivo.
 
         Em seguida, insira o nome do documento e clique no botão "Cadastrar documento".

@@ -1,14 +1,14 @@
-# Protótipo de LLM com base em Conhecimento - Hotmart
+# Protótipo de LLM com base em Conhecimento - Context Chatbot
 
-![](images/logo-hotmart.png)
+![](images/logo-chatbot.png)
 
-Este projeto é parte do desafio proposto pela Hotmart, focado na criação de um protótipo de Large Language Model (LLM) com base em conhecimento.
+Este projeto é parte de um desafio focado na criação de um protótipo de Large Language Model (LLM) com base em conhecimento.
 
 ## Descrição do Projeto
 O objetivo deste projeto é desenvolver dois microsserviços:
 
 1. **Microsserviço de Processamento e Armazenamento**:
-    * Recebe um documento de texto extraído da página: [Como funciona a Hotmart?](https://hotmart.com/pt-br/blog/como-funciona-hotmart)
+    * Recebe um documento de texto extraído de um arquivo ou página, por exemplo: [Llama 3.2: Revolutionizing edge AI and vision with open, customizable models](https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/)
     * Realiza o processamento desse documento e o armazena em um Vector Database open-source.
     * Desenvolvido como uma API para facilitar a integração e a escalabilidade.
 
@@ -34,8 +34,8 @@ Para executar este projeto localmente via Docker Compose, siga os passos abaixo:
 1. **Configuração inicial**:
 * Clone este repositório em sua máquina local.
 ```sh
-git clone https://github.com/lafidalgo/hotmart-challenge.git
-cd hotmart-challenge
+git clone https://github.com/lafidalgo/chatbot-challenge.git
+cd chatbot-challenge
 ```
 
 2. **Configuração do ambiente**:
@@ -48,12 +48,12 @@ cd hotmart-challenge
     - `OPENAI_API_KEY`: **(OBRIGATÓRIA)** API Key para acessar os serviços da OpenAI, incluindo a geração de embeddings e a utilização de seus LLMs. 
     - `OPENAI_EMBED_MODEL`: Nome do modelo de embeddings utilizado para transformar textos em vetores numéricos pela API da OpenAI. Valor padrão: `text-embedding-3-large`
     - `REPLICATE_API_TOKEN`: Token de API para autenticação com o serviço Replicate, para utilização de LLMs open-source.
-    - `QDRANT_CLUSTER_URL`: URL do cluster do banco de dados Qdrant usado para armazenar e recuperar vetores de embeddings de documentos. Valor padrão: `http://qdrant-hotmart-challenge:6333`
+    - `QDRANT_CLUSTER_URL`: URL do cluster do banco de dados Qdrant usado para armazenar e recuperar vetores de embeddings de documentos. Valor padrão: `http://qdrant-chatbot-challenge:6333`
     - `QDRANT_API_KEY`: API Key para autenticação com o serviço Qdrant.
 
     **Interface Streamlit**:
-    - `DOCUMENT_EXTRACTION_API_URL`: URL da API de Extração de Documentos. Valor padrão: `http://document-extraction-hotmart-challenge:8000`
-    - `DOCUMENT_QUERYING_API_URL`: URL da API de Busca e Resposta. Valor padrão: `http://document-querying-hotmart-challenge:8000`
+    - `DOCUMENT_EXTRACTION_API_URL`: URL da API de Extração de Documentos. Valor padrão: `http://document-extraction-chatbot-challenge:8000`
+    - `DOCUMENT_QUERYING_API_URL`: URL da API de Busca e Resposta. Valor padrão: `http://document-querying-chatbot-challenge:8000`
     - `STREAMLIT_AUTHENTICATOR_CONFIG_PATH`: Caminho para o arquivo de configuração do autenticador do Streamlit, que gerencia a autenticação dos usuários na interface. Valor padrão: `src/streamlit/authenticator/config.yaml`
 
 * **ATENÇÃO**: A única variável de ambiente que deve ser **obrigatoriamente** definida é a `OPENAI_API_KEY`. As demais variáveis são opcionais.
@@ -109,10 +109,10 @@ docker-compose up --build
 * ChatBot integrado com a `API de Busca e Resposta`
 * Inicialmente, seleciona-se o documento de referência desejado dentre a lista de documentos cadastrados no Vector Database
 * Então, seleciona-se o LLM desejado dentre a lista de opções cadastradas. A partir da integração com os serviços da OpenAI e do Replicate, estão disponíveis os seguintes modelos (configurados através do arquivo `src\api\shared\models\llm.json`):
-    * **OpenAI**: GPT-3.5 Turbo, GPT-4o
+    * **OpenAI**: GPT-3.5 Turbo, GPT-4o, GPT-4o Mini
     * **Meta**: Llama 2 7B Chat, Llama 2 13B Chat, Llama 2 70B Chat, Llama 3 8B Instruct, Llama 3 70B Instruct
     * **MistralAI**: Mistral 7B Instruct v0.2, Mixtral 8x7B Instruct v0.1
-* **ATENÇÃO**: Os prompts foram desenvolvidos tendo como referência as LLMs da `OpenAI`. Sendo assim, recomenda-se a utilização dos modelos `GPT-3.5 Turbo` ou `GPT-4o` para melhor performance. 
+* **ATENÇÃO**: Os prompts foram desenvolvidos tendo como referência as LLMs da `OpenAI`. Sendo assim, recomenda-se a utilização dos modelos `GPT-3.5 Turbo`, `GPT-4o` ou `GPT-4o Mini` para melhor performance. 
 
 ![](images/streamlit/chatbot.png)
 
