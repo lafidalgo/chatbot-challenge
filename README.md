@@ -8,28 +8,11 @@ This project focuses on creating a prototype of a Knowledge-Based Large Language
 
 ## Table of Contents
 
-1. [Project Description](#project-description)
-    * [Processing and Storage Microservice](#processing-and-storage-microservice)
-    * [Retrieve and Query Microservice](#retrieve-and-query-microservice)
-2. [Technologies Used](#technologies-used)
-3. [How to Run](#how-to-run)
-    * [Initial Setup](#initial-setup)
-    * [Environment Setup](#environment-setup)
-    * [Set Environment Variables](#set-environment-variables)
-    * [Build and Start the Services](#build-and-start-the-services)
-4. [Testing the Microservices](#testing-the-microservices)
-    * [FastAPI Swagger](#fastapi-swagger)
-        * [Document Extraction API](#document-extraction-api)
-        * [Querying and Response API](#querying-and-response-api)
-    * [Streamlit Interface](#streamlit-interface)
-        * [Login](#login)
-        * [Home](#home)
-        * [ChatBot](#chatbot)
-        * [Document Extraction](#document-extraction)
-        * [Account Settings](#account-settings)
-    * [Qdrant Dashboard](#qdrant-dashboard)
-    * [Example Scripts](#example-scripts)
-5. [GitHub Actions](#github-actions)
+* [Project Description](#project-description)
+* [Technologies Used](#technologies-used)
+* [How to Run](#how-to-run)
+* [Testing the Microservices](#testing-the-microservices)
+* [GitHub Actions](#github-actions)
 
 
 ## Project Description
