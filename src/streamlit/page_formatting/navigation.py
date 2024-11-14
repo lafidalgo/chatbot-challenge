@@ -35,9 +35,9 @@ def make_sidebar(authenticator):
             st.page_link("pages/chatbot.py",
                          label="ChatBot", icon="🤖")
             st.page_link("pages/document_extraction.py",
-                         label="Extração de Documentos", icon="📄")
+                         label="Document Extraction", icon="📄")
             st.page_link("pages/profile_settings.py",
-                         label="Ajustes de Conta", icon="🧑")
+                         label="Profile Settings", icon="🧑")
             st.write("")
             st.write("")
 

@@ -56,7 +56,7 @@ async def html_extraction(params: HTMLExtractionParams = Depends()):
 
 
 @router.post("/file-extraction/")
-async def html_extraction(params: FileExtractionParams = Depends(),
+async def file_extraction(params: FileExtractionParams = Depends(),
                           file: UploadFile = File(...)):
     results = {}
 

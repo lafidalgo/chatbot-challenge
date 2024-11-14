@@ -95,10 +95,10 @@ docker-compose up --build
 
 #### Login
 * Página de autenticação do usuário
-* Como padrão, a configuração do `Usuário Teste` encontra-se descrita no arquivo `src/streamlit/authenticator/config.yaml`
-* As credencias do `Usuário Teste` são:
-    * Usuário: `teste`
-    * Senha: `teste`
+* Como padrão, a configuração do `Test User` encontra-se descrita no arquivo `src/streamlit/authenticator/config.yaml`
+* As credencias do `Test User` são:
+    * Usuário: `test`
+    * Senha: `test`
 
 ![](images/streamlit/login.png)
 

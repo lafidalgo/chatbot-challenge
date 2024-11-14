@@ -12,44 +12,44 @@ page_formatting.make_sidebar(authenticator)
 
 st.markdown(
     """
-        # Extração de Documentos
+        # Document Extraction
 
-        Nesta seção, você pode cadastrar um novo documento de referência.
+        In this section, you can register a new reference document.
 
-        Para isso, você tem duas opções, escolha apenas uma delas:
-        - **Cadastro por URL**: Insira a URL do documento desejado. Ex: https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/
-        - **Cadastro por arquivo**: Faça o upload do arquivo.
+        To do this, you have two options. Choose only one:
+        - **Register by URL**: Enter the URL of the desired document. Example: https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/
+        - **Register by file**: Upload the file.
 
-        Em seguida, insira o nome do documento e clique no botão "Cadastrar documento".
+        Next, enter the document's name and click the "Register Document" button.
         """
 )
 
 # Get document URL
-document_url = st.text_input("URL do documento")
+document_url = st.text_input("Document URL")
 # Get uploaded file
-uploaded_file = st.file_uploader("Arquivo do documento")
+uploaded_file = st.file_uploader("Document File")
 # Get collection name
-collection_name = st.text_input("Nome do documento")
+collection_name = st.text_input("Document Name")
 
 # Register document
-if st.button("Cadastrar documento"):
+if st.button("Register Document"):
     if collection_name == "":
-        st.error("Por favor, insira o nome do documento.")
+        st.error("Please enter the document's name.")
         st.stop()
     if document_url == "" and not uploaded_file:
-        st.error("Por favor, insira a URL ou o arquivo.")
+        st.error("Please provide the URL or the file.")
         st.stop()
     if document_url and uploaded_file:
-        st.error("Por favor, insira apenas a URL ou o arquivo.")
+        st.error("Please provide only the URL or the file.")
         st.stop()
 
-    with st.spinner('Cadastrando documento...'):
+    with st.spinner('Registering document...'):
         if document_url:
-            # Send URL to file extraction API
+            # Send URL to document extraction API
             response = utils.send_url_to_document_extraction_api(
                 document_url, collection_name)
         else:
-            # Send file to file extraction API
+            # Send file to document extraction API
             response = utils.send_file_to_document_extraction_api(
                 uploaded_file, collection_name)
-    st.success("Documento cadastrado com sucesso!")
+    st.success("Document registered successfully!")

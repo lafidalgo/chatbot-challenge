@@ -10,7 +10,7 @@ authenticator, auth_config = utils.import_authentication_config()
 
 page_formatting.make_sidebar(authenticator)
 
-st.markdown("# Ajustes de Conta")
+st.markdown("# Profile Settings")
 
 # Reset password
 if st.session_state["authentication_status"]:
